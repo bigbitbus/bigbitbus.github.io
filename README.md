@@ -1,3 +1,6 @@
+# COPYRIGHT FOR TEMPLATE
+Based on the Hydra template by Cloudcannon
+
 # Hydra
 
 Marketing site template for Jekyll. Browse through a [live demo](https://proud-alligator.cloudvent.net/).

@@ -5,6 +5,7 @@ title: BigBitBus Inc.
 url: "https://bigbitbus.com"
 baseurl:
 google_analytics_key: UA-117939091-2
+markdown: kramdown
 google_maps_javascript_api_key:
 disqus_shortname:
 

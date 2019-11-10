@@ -1,18 +1,18 @@
 ---
 title: Contact
-heading: Get in touch today
-description: We'd love to help you improve your sales.
+heading: 
+<!-- description: Email us or simply drop by! -->
 
 map:
   latitude: 43.465400
   longitude: -80.523060
-  address: "14 Erb Street West, Waterloo, Ontario, Canada"
+  address: "14 Erb Street West, Waterloo ON N2L 1S7, Canada"
   zoom: 13
 ---
-<div class="map" id="map"></div>
+<!-- <div class="map" id="map"></div> -->
 
 
-<div class="contact-box">
+<!-- <div class="contact-box">
 	<form action="{{ site.baseurl }}/contact-success/" method="post" class="contact-form">
 		<input type="hidden" name="_to" value="support@example.com" />
 		<input type="text" name="_gotcha" style="display: none;">
@@ -27,18 +27,18 @@ map:
 		<textarea name="message" id="message" placeholder="Enter your message..."></textarea>
 
 		<input type="submit" value="Send Message" />
-	</form>
-
+	</form> -->
+<center>
 	<div class="contact-details">
 		<h3 class="editable">Address</h3>
-		<address><a target="_blank" href="https://www.google.com/maps/place/{{ page.map.address | url_encode }}">{{ page.map.address | replace: ", ", ", <br>" }}</a></address>
+		<address><a target="_blank" href="https://www.google.com/maps/place/{{ page.map.address | url_encode }}">{{ page.map.address | replace: ", ", "<br>" }}</a></address>
 
 		<h3 class="editable">Email</h3>
-		<p><a href="mailto:support@example.com">support@example.com</a></p>
+		<p><a href="mailto:contact@bigbitbus.com">contact@bigbitbus.com</a></p>
 	</div>
-</div>
-
-<script type="text/javascript">
+</center>
+<p class="copyright">&copy; {{ site.time | date: '%Y' }} MyApp Ltd. • <a href="#">Terms</a> &amp; <a href="#">Privacy</a> • <a href="https://cloudcannon.com/">Template by CloudCannon</a></p>
+<!-- <script type="text/javascript">
 	window.mapData = {{ page.map | jsonify }};
 
 	function initMap() {
@@ -175,4 +175,4 @@ map:
 		});
 	}
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_javascript_api_key }}&amp;callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_javascript_api_key }}&amp;callback=initMap"></script> -->

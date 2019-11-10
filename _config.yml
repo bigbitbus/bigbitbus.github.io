@@ -1,7 +1,7 @@
 # ----
 # Site
 
-title: Hydra Template
+title: BigBitBus Inc.
 url: "https://proud-alligator.cloudvent.net"
 baseurl:
 google_analytics_key:
@@ -89,16 +89,16 @@ exclude:
 # -----------
 # CloudCannon
 
-social_icons:
-  - Facebook
-  - Google Plus
-  - Instagram
-  - LinkedIn
-  - Pinterest
-  - Tumblr
-  - Twitter
-  - YouTube
-  - RSS
+# social_icons:
+#   - Facebook
+#   - Google Plus
+#   - Instagram
+#   - LinkedIn
+#   - Pinterest
+#   - Tumblr
+#   - Twitter
+#   - YouTube
+#   - RSS
 
 _comments:
   map: Update the map location and display settings.

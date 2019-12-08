@@ -1,12 +1,8 @@
----
-title: BigBitBus API Documentation
-author: BigBitBus Inc.
----
 # The BigBitBus API Documentation<!-- omit in toc -->
 
-Revision v1.01
+Revision v3.1
 
-Date 30/09/2019
+Date 06/12/2019
 
 License: Copyright BigBitBus Inc. All rights reserved.
 
@@ -15,6 +11,7 @@ License: Copyright BigBitBus Inc. All rights reserved.
 **Table of Contents**
 
 - [BigBitBus API Version 1](#bigbitbus-api-version-1)
+
   - [1.1. Authorization](#11-authorization)
   - [1.2. Applications](#12-applications)
     - [1.2.1. Create an application](#121-create-an-application)
@@ -25,26 +22,35 @@ License: Copyright BigBitBus Inc. All rights reserved.
     - [1.2.6. VM Optimization](#126-vm-optimization)
     - [1.2.7. Updating an Application](#127-updating-an-application)
     - [1.2.8. Deleting an Application](#128-deleting-an-application)
+    - [1.2.9. Deleting multiple Applications](#129-deleting-multiple-applications)
   - [1.3. Prices](#13-prices)
     - [1.3.1. Creating a new price for a service (POST)](#131-creating-a-new-price-for-a-service-post)
     - [1.3.2. Get price details about a pre-existing price (GET)](#132-get-price-details-about-a-pre-existing-price-get)
     - [1.3.3. Updating the costperunit for a pre-existing price (PUT)](#133-updating-the-costperunit-for-a-pre-existing-price-put)
     - [1.3.4. Deleting a price (DELETE)](#134-deleting-a-price-delete)
-    - [1.3.5. Filtering Price data](#135-filtering-price-data)
-      - [1.3.5.1. Getting all prices for a service type](#1351-getting-all-prices-for-a-service-type)
-      - [1.3.5.2 Get the price of a ServiceType (specified by its service_pk) of a certain pricetype](#1352-get-the-price-of-a-servicetype-specified-by-its-service_pk-of-a-certain-pricetype)
-      - [1.3.5.3. Getting all prices of a certain pricetype](#1353-getting-all-prices-of-a-certain-pricetype)
-      - [1.3.5.4. Getting all prices](#1354-getting-all-prices)
+    - [1.3.5. Deleting multiple prices (POST)](#135-deleting-multiple-prices-post)
+    - [1.3.6. Filtering Price data](#136-filtering-price-data)
+      - [1.3.6.1. Getting all prices for a service type](#1361-getting-all-prices-for-a-service-type)
+      - [1.3.6.2 Get the price of a ServiceType (specified by its service_pk) of a certain pricetype](#1362-get-the-price-of-a-servicetype-specified-by-its-service_pk-of-a-certain-pricetype)
+      - [1.3.6.3. Getting all prices of a certain pricetype](#1363-getting-all-prices-of-a-certain-pricetype)
+      - [1.3.6.4. Getting all prices](#1364-getting-all-prices)
   - [1.4. ServiceTypes](#14-servicetypes)
     - [1.4.1. Create a new service type (POST)](#141-create-a-new-service-type-post)
     - [1.4.2. Retrieve a service type (GET)](#142-retrieve-a-service-type-get)
     - [1.4.3. Deleting a service type (DELETE)](#143-deleting-a-service-type-delete)
-    - [1.4.4. Finding service types](#144-finding-service-types)
-      - [1.4.4.1. Service type keyword search](#1441-service-type-keyword-search)
-      - [1.4.4.2. List all service types](#1442-list-all-service-types)
+    - [1.4.4. Deleting multiple service types (POST)](#144-deleting-multiple-service-types-post)
+    - [1.4.5. Finding service types](#145-finding-service-types)
+      - [1.4.5.1. Service type keyword search](#1451-service-type-keyword-search)
+      - [1.4.5.2. List all service types](#1452-list-all-service-types)
+  - [1.5. ProviderDiscounts](#15-providerdiscounts)
+    - [1.5.1. Create a new discount (POST)](#151-create-a-new-discount-post)
+    - [1.5.2. Retrieve a discount (GET)](#152-retrieve-a-discount-get)
+    - [1.5.3. Updating the discount amount for a pre-existing discount (PUT)](#153-updating-the-discount-amount-for-a-pre-existing-discount-put)
+    - [1.5.4. Deleting a discount (DELETE)](#154-deleting-a-discount-delete)
+    - [1.5.5. Listing all discounts](#155-listing-all-discounts)
+  - [1.6. Providers](#16-providers)
 
-<div style="page-break-after: always;"></div>
-
+    <div style="page-break-after: always;"></div>
 
 ## Concepts
 
@@ -116,11 +122,11 @@ Users create applications in the database (using the API). They can then query d
 
 Next, lets visualize the data models being used under the hood.
 
-![Applications and Service Instances](/assets/documentation/applications.png)
+![Applications and Service Instances](applications.png)
 
 In Fig.1 a user defines an application, which may comprise of multiple service instances. Each service instance is composed of one or more service type instance (quantity), along with properties like which price type is being used to pay for these services. The italicized text illustrates these concepts via examples. Users define applications via the API.
 
-![Providers and Servicetypes](/assets/documentation/providers.png)
+![Providers and Servicetypes](providers.png)
 
 Fig. 2 shows providers that contain multiple service types, which in turn may have multiple price types associated with them. This data is loaded and updated in the BigBitBus database by the administrator.
 
@@ -167,7 +173,7 @@ curl -X POST \
   -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkwOTQ5OTksImVtYWlsIjoiIn0.wLUVsUtZMRwLj6bvRK5dWAFmUTwYPNMbGpuHmmO9mXY' \
   -d '{
     "app_name": "Enterprise_HR_SAAS_Application",
-    "decription": "Finance department application",
+    "description": "Finance department application",
     "services": [
         {
             "service_type": "aws-c5.xlarge",
@@ -237,7 +243,55 @@ curl -X GET \
   -H 'Content-Type: application/json'
 ```
 
-In case there are too many applications, pagination can be used, like so
+which yields
+
+```json
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "app_name": "app1",
+      "date_created": "2019-11-14T16:18:18.730938Z",
+      "pk_hash": "373d10dfd18ae01daca0dcad1448d6b62eca0b7ad66b3c439ba869fa",
+      "services": [
+        {
+          "attributes": [],
+          "service_type": "aze-basic_a0",
+          "version_date": "2019-11-03T20:22:09.047029Z",
+          "pk_hash": "6baf5d6af555b4c4046d6f0a00b0ea6d50ed8629fa97515e70f3fce8",
+          "location": "brazilsouth",
+          "price_type": "onDemandPrice",
+          "provider": "aze"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "app_name": "app2",
+      "date_created": "2019-11-20T17:15:42.879412Z",
+      "pk_hash": "be78422202906efd425a84bdbb796ef38d91cd068ddb9773cb1aea1d",
+      "services": [
+        {
+          "attributes": [],
+          "service_type": "aze-basic_a0",
+          "version_date": "2019-11-03T20:22:10.225264Z",
+          "pk_hash": "6baf5d6af555b4c4046d6f0a00b0ea6d50ed8629fa97515e70f3fce8",
+          "location": "us-east-2",
+          "price_type": "reserved1yearPrice",
+          "provider": "aze"
+        }
+      ],
+      "description": ""
+    }
+  ]
+}
+```
+
+The list results are paginated, and by default shows at most the first 10 applications. The response also contains URLs corresponding to the next and previous 'pages' if applicable, and a count of the total number of applications in the database.
+
+The limit and offset of the results can be customized like so:
 
 ```bash
 curl -X GET \
@@ -246,6 +300,35 @@ curl -X GET \
   -H 'Content-Type: application/json'
 
 
+```
+
+which would yield:
+
+```json
+{
+  "count": 2,
+  "next": "http://127.0.0.1:8000/api/v1.0/calc/applications/?limit=1&offset=1",
+  "previous": null,
+  "results": [
+    {
+      "app_name": "app1",
+      "date_created": "2019-11-14T16:18:18.730938Z",
+      "pk_hash": "373d10dfd18ae01daca0dcad1448d6b62eca0b7ad66b3c439ba869fa",
+      "services": [
+        {
+          "attributes": [],
+          "service_type": "aze-basic_a0",
+          "version_date": "2019-11-03T20:22:09.047029Z",
+          "pk_hash": "6baf5d6af555b4c4046d6f0a00b0ea6d50ed8629fa97515e70f3fce8",
+          "location": "brazilsouth",
+          "price_type": "onDemandPrice",
+          "provider": "aze"
+        }
+      ],
+      "description": ""
+    }
+  ]
+}
 ```
 
 2. Get the details of a specific application. This can be accomplished by passing the primary key `pk` or the `app_name` in the URL, like so
@@ -350,7 +433,7 @@ Here is an example of a report returned by the above API calls
         "provider": "aws"
       }
     ],
-    "decription": "Finance department application"
+    "description": "Finance department application"
   },
   "cost_components": [
     {
@@ -472,12 +555,12 @@ This yields
         "provider": "aws"
       }
     ],
-    "decription": "Finance department application"
+    "description": "Finance department application"
   },
   "alternative_option": {
     "components": [
       {
-        "machine_name": "aze-standard_a4_v2",
+        "servicetype": "aze-standard_a4_v2",
         "quantity": "8",
         "costph": 0.159,
         "numcpus": "4",
@@ -488,7 +571,7 @@ This yields
         "Instead of": "aws-c5.xlarge in us-west-2"
       },
       {
-        "machine_name": "aze-standard_f8s_v2",
+        "servicetype": "aze-standard_f8s_v2",
         "quantity": "3",
         "costph": 0.34,
         "numcpus": "8",
@@ -583,7 +666,7 @@ This returns the following JSON string
         "provider": "aws"
       }
     ],
-    "decription": "Finance department application"
+    "description": "Finance department application"
   },
   "current_application": {
     "components": [
@@ -594,7 +677,7 @@ This returns the following JSON string
         "quantity": "8",
         "util": "40",
         "max_util": "80",
-        "service": "aws-c5.xlarge",
+        "service_type": "aws-c5.xlarge",
         "unit_cost": 0.17,
         "unit": "",
         "location": "us-west-2",
@@ -608,7 +691,7 @@ This returns the following JSON string
         "quantity": "3",
         "util": "30",
         "max_util": "80",
-        "service": "aws-c5.2xlarge",
+        "service_type": "aws-c5.2xlarge",
         "unit_cost": 0.34,
         "unit": "",
         "location": "us-east-2",
@@ -621,7 +704,7 @@ This returns the following JSON string
   "alternative_option": {
     "components": [
       {
-        "machine_name": "aws-t3.xlarge",
+        "servicetype": "aws-t3.xlarge",
         "machine_cpu": 41.56805002183218,
         "numcpus": "4",
         "memory": "15.48",
@@ -632,7 +715,7 @@ This returns the following JSON string
         "service_cost": 1.328
       },
       {
-        "machine_name": "aws-t3.xlarge",
+        "servicetype": "aws-t3.xlarge",
         "machine_cpu": 65.54483646460177,
         "numcpus": "4",
         "memory": "15.48",
@@ -723,7 +806,7 @@ This returns the following alternate options for the application.
         "provider": "aws"
       }
     ],
-    "decription": "Finance department application"
+    "description": "Finance department application"
   },
   "current_application": {
     "components": [
@@ -734,7 +817,7 @@ This returns the following alternate options for the application.
         "quantity": "8",
         "util": "40",
         "max_util": "80",
-        "service": "aws-c5.xlarge",
+        "service_type": "aws-c5.xlarge",
         "unit_cost": 0.17,
         "unit": "",
         "location": "us-west-2",
@@ -748,7 +831,7 @@ This returns the following alternate options for the application.
         "quantity": "3",
         "util": "30",
         "max_util": "80",
-        "service": "aws-c5.2xlarge",
+        "service_type": "aws-c5.2xlarge",
         "unit_cost": 0.34,
         "unit": "",
         "location": "us-east-2",
@@ -761,7 +844,7 @@ This returns the following alternate options for the application.
   "alternative_option": {
     "components": [
       {
-        "machine_name": "aze-standard_b4ms",
+        "servicetype": "aze-standard_b4ms",
         "machine_cpu": 75.43015027854008,
         "numcpus": "4",
         "memory": "15.67",
@@ -772,7 +855,7 @@ This returns the following alternate options for the application.
         "service_cost": 1.328
       },
       {
-        "machine_name": "aze-standard_f4",
+        "servicetype": "aze-standard_f4",
         "machine_cpu": 69.46153379604617,
         "numcpus": "4",
         "memory": "7.79",
@@ -858,7 +941,7 @@ curl -X GET \
         "provider": "aws"
       }
     ],
-    "decription": "Finance department application"
+    "description": "Finance department application"
   },
   "current_application": {
     "components": [
@@ -869,7 +952,7 @@ curl -X GET \
         "quantity": "8",
         "util": "40",
         "max_util": "80",
-        "service": "aws-c5.xlarge",
+        "service_type": "aws-c5.xlarge",
         "unit_cost": 0.17,
         "unit": "",
         "location": "us-west-2",
@@ -883,7 +966,7 @@ curl -X GET \
         "quantity": "3",
         "util": "30",
         "max_util": "80",
-        "service": "aws-c5.2xlarge",
+        "service_type": "aws-c5.2xlarge",
         "unit_cost": 0.34,
         "unit": "",
         "location": "us-east-2",
@@ -896,7 +979,7 @@ curl -X GET \
   "alternative_option": {
     "components": [
       {
-        "machine_name": "aws-t3.xlarge",
+        "servicetype": "aws-t3.xlarge",
         "machine_cpu": 41.56805002183218,
         "numcpus": "4",
         "memory": "15.48",
@@ -907,7 +990,7 @@ curl -X GET \
         "service_cost": 0.832
       },
       {
-        "machine_name": "aws-t3.xlarge",
+        "servicetype": "aws-t3.xlarge",
         "machine_cpu": 65.54483646460177,
         "numcpus": "4",
         "memory": "15.48",
@@ -988,7 +1071,7 @@ curl -X PUT \
             ]
         }
     ],
-    "decription": "HR department application"
+    "description": "HR department application"
 }'
 ```
 
@@ -1055,7 +1138,7 @@ The updated application is returned.
             "provider": "aws"
         }
     ],
-    "decription": "HR department application"
+    "description": "HR department application"
 }
 ```
 
@@ -1069,6 +1152,23 @@ curl -X DELETE \
   -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
   -H 'Content-Type: application/json' \
 
+```
+
+This returns `204 No Content` on successful deletion.
+
+### 1.2.9 Deleting multiple applications
+
+Multiple applications may be deleted in one request.
+
+```bash
+curl -X POST \
+  http://127.0.0.1:8000/api/v1.0/calc/applications/delete/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
+  -H 'Content-Type: application/json' \
+  -d '[
+    "Enterprise_HR_SAAS_Application",
+    "Enterprise_HR_SAAS_Application2"
+  ]'
 ```
 
 This returns `204 No Content` on successful deletion.
@@ -1181,7 +1281,7 @@ Similarly, a price can be deleted using the `service_pk` and `pricetype` or the 
 
 Using `service_pk` and `pricetype`
 
-```
+```bash
 curl -X DELETE \
   http://127.0.0.1:8000/api/v1.0/calc/price/service_pk/45d7822c23fe69282e5640092775050834c1b7ec987d92d2a206c3a8/pricetype/examplecorp-aws-valued-customer-price/ \
   -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
@@ -1190,11 +1290,28 @@ curl -X DELETE \
 
 ...or using the price `pk`
 
-```
+```bash
 curl -X DELETE \
   http://127.0.0.1:8000/api/v1.0/calc/price/pk/dc0c96587629b22e441020309b37227cb885632e2b09caba40cee5be/ \
   -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
   -H 'Content-Type: application/json' \
+```
+
+A `204 No Content` is returned.
+
+### 1.3.5 Deleting multiple prices (POST)
+
+Multiple prices may be deleted in one request using the `pk`s of the prices.
+
+```bash
+curl -X POST \
+  http://127.0.0.1:8000/api/v1.0/calc/price/delete/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
+  -H 'Content-Type: application/json' \
+  -d '[
+    "dc0c96587629b22e441020309b37227cb885632e2b09caba40cee5be",
+    "7cb885632e2b09caba40cee5bedc0c96587629b22e441020309b3722",
+  ]'
 ```
 
 A `204 No Content` is returned.
@@ -1215,32 +1332,37 @@ curl -X GET \
 Returns
 
 ```json
-[
-  {
-    "service_name": "aze-standard_f1",
-    "pk": "5d63d5ac83ddaade3dce51459c2da9a00fd6d795a6f3495ef29ec1d9",
-    "name": "reserved3yearPrice",
-    "service_pk": "ffe6434785a8cca79c3837aec689e8294715c7330f778324d6a1a274",
-    "costperunit": 0.02842,
-    "location": "koreacentral"
-  },
-  {
-    "service_name": "aze-standard_f1",
-    "pk": "80838a27745a8adef731df57fcbf1ef0d0cfe2a6aabe233a13caf371",
-    "name": "reserved1yearPrice",
-    "service_pk": "ffe6434785a8cca79c3837aec689e8294715c7330f778324d6a1a274",
-    "costperunit": 0.03927,
-    "location": "koreacentral"
-  },
-  {
-    "service_name": "aze-standard_f1",
-    "pk": "b17b7b949031819d283f374165e79460058417781c3a2c5c10ce7277",
-    "name": "onDemandPrice",
-    "service_pk": "ffe6434785a8cca79c3837aec689e8294715c7330f778324d6a1a274",
-    "costperunit": 0.051,
-    "location": "koreacentral"
-  }
-]
+{
+  "count": 100,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "service_name": "aze-standard_f1",
+      "pk": "5d63d5ac83ddaade3dce51459c2da9a00fd6d795a6f3495ef29ec1d9",
+      "name": "reserved3yearPrice",
+      "service_pk": "ffe6434785a8cca79c3837aec689e8294715c7330f778324d6a1a274",
+      "costperunit": 0.02842,
+      "location": "koreacentral"
+    },
+    {
+      "service_name": "aze-standard_f1",
+      "pk": "80838a27745a8adef731df57fcbf1ef0d0cfe2a6aabe233a13caf371",
+      "name": "reserved1yearPrice",
+      "service_pk": "ffe6434785a8cca79c3837aec689e8294715c7330f778324d6a1a274",
+      "costperunit": 0.03927,
+      "location": "koreacentral"
+    },
+    {
+      "service_name": "aze-standard_f1",
+      "pk": "b17b7b949031819d283f374165e79460058417781c3a2c5c10ce7277",
+      "name": "onDemandPrice",
+      "service_pk": "ffe6434785a8cca79c3837aec689e8294715c7330f778324d6a1a274",
+      "costperunit": 0.051,
+      "location": "koreacentral"
+    }
+  ]
+}
 ```
 
 A `200 OK` is returned.
@@ -1280,34 +1402,70 @@ curl -X GET \
   -H 'Content-Type: application/json'
 ```
 
-this returns a list of prices
+this returns a paginated list of prices
 
 ```json
-[
-  {
-    "service_name": "aws-t3.small",
-    "pk": "789a89b8bcc4ce13552cfdd882cee4b130bbf1db0ad3d83b2a1600a9",
-    "name": "examplecorp-aws-valued-customer-reduced-price",
-    "service_pk": "45d7822c23fe69282e5640092775050834c1b7ec987d92d2a206c3a8",
-    "costperunit": 0.001,
-    "location": "us-east-2"
-  },
-  {
-    "service_name": "aws-i3.large",
-    "pk": "c8ff55168e90749f911a87a5e6ff789e2e2d3f1440827925cb4c631d",
-    "name": "examplecorp-aws-valued-customer-reduced-price",
-    "service_pk": "ffc653c1505713081527f1a39894d5fe16cebd8f81593c6622165cc7",
-    "costperunit": 0.01,
-    "location": "eu-west-1"
-  }
-]
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "service_name": "aws-t3.small",
+      "pk": "789a89b8bcc4ce13552cfdd882cee4b130bbf1db0ad3d83b2a1600a9",
+      "name": "examplecorp-aws-valued-customer-reduced-price",
+      "service_pk": "45d7822c23fe69282e5640092775050834c1b7ec987d92d2a206c3a8",
+      "costperunit": 0.001,
+      "location": "us-east-2"
+    },
+    {
+      "service_name": "aws-i3.large",
+      "pk": "c8ff55168e90749f911a87a5e6ff789e2e2d3f1440827925cb4c631d",
+      "name": "examplecorp-aws-valued-customer-reduced-price",
+      "service_pk": "ffc653c1505713081527f1a39894d5fe16cebd8f81593c6622165cc7",
+      "costperunit": 0.01,
+      "location": "eu-west-1"
+    }
+  ]
+}
 ```
 
-A `200 OK` response code is returned.
+By default, this returns at most the first 10 prices. The response also contains URLs corresponding to the next and previous 'pages' if applicable, and a count of the total number of prices in the database.
+
+The pagination scheme can be altered with the limit and offset parameters, like so:
+
+```bash
+curl -X GET \
+  'http://127.0.0.1:8000/api/v1.0/calc/price/pricetype/examplecorp-aws-valued-customer-reduced-price/?limit=1&offset=0' \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
+  -H 'Content-Type: application/json'
+```
+
+which would yield
+
+```json
+{
+  "count": 2,
+  "next": "http://127.0.0.1:8000/api/v1.0/calc/price/?limit=1&offset=1",
+  "previous": null,
+  "results": [
+    {
+      "service_name": "aws-t3.small",
+      "pk": "789a89b8bcc4ce13552cfdd882cee4b130bbf1db0ad3d83b2a1600a9",
+      "name": "examplecorp-aws-valued-customer-reduced-price",
+      "service_pk": "45d7822c23fe69282e5640092775050834c1b7ec987d92d2a206c3a8",
+      "costperunit": 0.001,
+      "location": "us-east-2"
+    }
+  ]
+}
+```
+
+In both cases, a `200 OK` response code is returned.
 
 #### 1.3.5.4. Getting all prices
 
-To get details of all prices stored in th database.
+To get details of all prices stored in the database.
 
 Note the use of limit (number of prices returned) and the offset in order to limit the returned output.
 
@@ -1478,9 +1636,24 @@ curl -X DELETE \
 
 A `204 No Content` is returned.
 
-### 1.4.4. Finding service types
+### 1.4.4 Deleting multiple service types (POST)
 
-#### 1.4.4.1. Service type keyword search
+A user can delete multiple service types if they are all user-defined.
+
+```bash
+curl -X POST \
+  http:127.0.0.1:8000/api/v1.0/calc/servicetype/delete/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
+  -H 'Content-Type: application/json' \
+  -d '[
+    "e72e11be451152e0758d18248d700e05c36e0b0a4a1929f612fc6ea6",
+    "b971a4a221ad29cfb3b0558e37689dfb460d590f108f45f7ea7dc751"
+  ]'
+```
+
+### 1.4.5. Finding service types
+
+#### 1.4.5.1. Service type keyword search
 
 The `servicesearch` endpoint can be used for keyword search. A list of space-separated terms are sent to the API server, as shown in these examples.
 
@@ -1502,9 +1675,9 @@ curl -X GET \
   -H 'Content-Type: application/json'
 ```
 
-#### 1.4.4.2. List all service types
+#### 1.4.5.2. List all service types
 
-This API call returns all the service types. This is a usually a lot of data!
+This API call returns a paginated list of all the service types form.
 
 ```bash
 curl -X GET \
@@ -1514,17 +1687,683 @@ curl -X GET \
 
 ```
 
-Instead, consider using pagination with a limit and offset, like so:
+yields
+
+```json
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "name": "aze-standard_b2ms",
+      "provider": "aze",
+      "location": "canadacentral",
+      "type": "compute",
+      "unit": "",
+      "attributes": [
+        {
+          "attr_id": "numcpus",
+          "value": "2"
+        },
+        {
+          "attr_id": "memory",
+          "value": "8"
+        }
+      ],
+      "pk_hash": "cbd3aac72de81ae1925f09c86c1b7f77bf6ee4c934fd41c35a8f77fc",
+      "description": "Standard_B2ms General purpose",
+      "version_date": "2019-11-03T20:21:41.185615Z",
+      "user_defined": false
+    },
+    {
+      "name": "aze-standard_f8",
+      "provider": "aze",
+      "location": "canadacentral",
+      "type": "compute",
+      "unit": "",
+      "attributes": [
+        {
+          "attr_id": "numcpus",
+          "value": "8"
+        },
+        {
+          "attr_id": "memory",
+          "value": "16"
+        }
+      ],
+      "pk_hash": "1c51c76bd7e00a3bc32fe80b5937542abf22bd1e2c2d3ad4ab54b8e6",
+      "description": "Standard_F8 Compute optimized",
+      "version_date": "2019-11-03T20:21:41.697401Z",
+      "user_defined": false
+    }
+  ]
+}
+```
+
+By default, this returns at most the first 10 service types. The response also contains URLs corresponding to the next and previous 'pages' if applicable, and a count of the total number of service types in the database.
+
+The pagination scheme can be altered with the limit and offset parameters, like so:
 
 ```bash
 curl -X GET \
-  'http://127.0.0.1:8000/api/v1.0/calc/servicetype/?limit=5&offset=4' \
+  'http://127.0.0.1:8000/api/v1.0/calc/servicetype/?limit=1&offset=0' \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkyODkzMDAsImVtYWlsIjoiIn0.ESU0xx9I8MVuIhvN4eD02szSzz3bhi5D3CpCiKQQoFk' \
+  -H 'Content-Type: application/json' \
+```
+
+which would yield
+
+```json
+{
+  "count": 2,
+  "next": "http://127.0.0.1:8000/api/v1.0/calc/servicetype/?limit=1&offset=1",
+  "previous": null,
+  "results": [
+    {
+      "name": "aze-standard_b2ms",
+      "provider": "aze",
+      "location": "canadacentral",
+      "type": "compute",
+      "unit": "",
+      "attributes": [
+        {
+          "attr_id": "numcpus",
+          "value": "2"
+        },
+        {
+          "attr_id": "memory",
+          "value": "8"
+        }
+      ],
+      "pk_hash": "cbd3aac72de81ae1925f09c86c1b7f77bf6ee4c934fd41c35a8f77fc",
+      "description": "Standard_B2ms General purpose",
+      "version_date": "2019-11-03T20:21:41.185615Z",
+      "user_defined": false
+    }
+  ]
+}
+```
+
+In both cases, a `200 OK` code is returned.
+
+<div style="page-break-after: always;"></div>
+
+## 1.5. ProviderDiscounts
+
+Users may add discounts they receive from using certain providers. For example, a 30% price discount for machines that use amazon web services (AWS)
+
+### 1.5.1. Create a new discount (POST)
+
+Create new discount like so
+
+```bash
+curl -X POST \
+  http://127.0.0.1:8000/api/v1.0/calc/discount/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "provider": "aws",
+    "discount": "30"
+  }'
+```
+
+The new discount is returned as a JSON string.
+
+```json
+{
+  "pk_hash": "b42385356271f4a9e3945abe2c3daff54d41af4ad0977394805437ec",
+  "provider": {
+    "name": "aws",
+    "owner": "generic"
+  },
+  "discount": "30"
+}
+```
+
+Note that discount percentages must be expressed as an integer between 0 and 100, and further that only one discount may exist for each provider. In the case that there is both a generic-owned and user-owned provider of the same name, the user-owned one will be used.
+
+A `201 Created` code is returned.
+
+### 1.5.2. Retrieve a discount (GET)
+
+We can use the pk to get details of a discount.
+
+```bash
+curl -X GET \
+  http://127.0.0.1:8000/api/v1.0/calc/discount/pk/e72e11be451152e0758d18248d700e05c36e0b0a4a1929f612fc6ea6/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
+  -H 'Content-Type: application/json' \
+
+```
+
+yields
+
+```json
+{
+  "pk_hash": "b42385356271f4a9e3945abe2c3daff54d41af4ad0977394805437ec",
+  "provider": {
+    "name": "aws",
+    "owner": "generic"
+  },
+  "discount": "30"
+}
+```
+
+A `200 OK` code is returned.
+
+### 1.5.3. Updating the discount amount for a pre-existing discount (PUT)
+
+the `discount` value can be updated for any provider discount(as long as it is "owned" - originally created - by the user).
+The `pk` of the discount can be used as in the `get` request above.
+
+```bash
+curl -x put \
+  http://127.0.0.1:8000/api/v1.0/calc/discount/pk/b42385356271f4a9e3945abe2c3daff54d41af4ad0977394805437ec/ \
+  -h 'authorization: jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
+  -h 'content-type: application/json' \
+  -d '{
+    "provider": "aws",
+    "discount": "40"
+}'
+```
+
+the modified discount is returned
+
+```json
+{
+  "pk_hash": "b42385356271f4a9e3945abe2c3daff54d41af4ad0977394805437ec",
+  "provider": {
+    "name": "aws",
+    "owner": "generic"
+  },
+  "discount": "30"
+}
+```
+
+a `200 ok` is returned on success.
+
+### 1.5.4. Deleting a discount (DELETE)
+
+A user can delete a discount for any provider.
+
+```bash
+curl -X DELETE \
+  http://127.0.0.1:8000/api/v1.0/calc/discount/pk/e72e11be451152e0758d18248d700e05c36e0b0a4a1929f612fc6ea6/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkxMTAyOTUsImVtYWlsIjoiIn0.GvZaozS0NQ3e3B4MrGDzNIIP32nGXCpGBRNendUy2Kw' \
+  -H 'Content-Type: application/json'
+
+```
+
+A `204 No Content` is returned.
+
+### 1.5.5. Listing all discounts
+
+This API call returns all discounts belonging to a user.
+
+```bash
+curl -X GET \
+  http://127.0.0.1:8000/api/v1.0/calc/discount/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkyODkzMDAsImVtYWlsIjoiIn0.ESU0xx9I8MVuIhvN4eD02szSzz3bhi5D3CpCiKQQoFk' \
+  -H 'Content-Type: application/json' \
+
+```
+
+Limit the size of the response using pagination, like so:
+
+```bash
+curl -X GET \
+  'http://127.0.0.1:8000/api/v1.0/calc/discount/?limit=5&offset=4' \
   -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImdlbmVyaWMiLCJleHAiOjE1NjkyODkzMDAsImVtYWlsIjoiIn0.ESU0xx9I8MVuIhvN4eD02szSzz3bhi5D3CpCiKQQoFk' \
   -H 'Content-Type: application/json' \
 ```
 
 <div style="page-break-after: always;"></div>
 
+## 1.6. Providers
+
+Users can create custom providers. This may be useful in order to add servetypes corresponding to a private datacenter or cloud and adding customized costs to their applications. For example, a user may create a "provider" called `overheads` and add "servicetypes" for `hr_admin_overhead` and `network_cost_per_server`. Lets work through an example below.
+
+First, create the provider
+
+```bash
+curl -X POST \
+  http://127.0.0.1:8000/api/v1.0/calc/provider/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImJic2VydmljZWFjY291bnQiLCJleHAiOjE1NzQ5NjIyMzIsImVtYWlsIjoiIn0.6ZmIczIXvers4SFRsOowZqBtMqpD9rHwzChH_shOUlE' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "overheads",
+    "description": "Provider to capture custom overheads for any application"
+}'
+```
+
+We can check that this `overheads` provider has been correctly created
+
+```bash
+curl -X GET \
+  http://127.0.0.1:8000/api/v1.0/calc/provider/ove \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImJic2VydmljZWFjY291bnQiLCJleHAiOjE1NzQ5NjIyMzIsImVtYWlsIjoiIn0.6ZmIczIXvers4SFRsOowZqBtMqpD9rHwzChH_shOUlE' \
+  -H 'Content-Type: application/json'
+```
+
+```json
+{
+  "name": "overheads",
+  "owner": "bbserviceaccount",
+  "description": "Provider to capture custom overheads for any application",
+  "short_name": "ove"
+}
+```
+
+We note that the backend auto-assigns a 3-letter `short_name` to the new provider corresponding to the first 3 letters of the `name` (lowercased if needed). If we were to create a second provider with the same prefix (e.g. `overtheheads`) then the backend would choose a random 3-letter `short_name` and assign it to the second provider.
+
+Next, lets create a service type called `hr_admin_overhead`
+
+```bash
+curl -X POST \
+  http://127.0.0.1:8000/api/v1.0/calc/servicetype/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImJic2VydmljZWFjY291bnQiLCJleHAiOjE1NzQ5NjIyMzIsImVtYWlsIjoiIn0.6ZmIczIXvers4SFRsOowZqBtMqpD9rHwzChH_shOUlE' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "attributes": [
+    ],
+    "name": "hr_admin_overhead",
+    "location": "anywhere",
+    "type": "other",
+    "unit": "per server",
+    "provider": "ove",
+    "description": "This servicetype embodies the human resource admin cost overhead per server"
+}'
+```
+
+The POST request returns
+
+```json
+{
+  "name": "hr_admin_overhead",
+  "provider": "overheads",
+  "location": "anywhere",
+  "type": "other",
+  "unit": "per server",
+  "attributes": [],
+  "pk_hash": "512c4c227fc31be9291f0c8e392dc930f1b1f9e0b20776df81e5a986",
+  "description": "This servicetype embodies the human resource admin cost overhead per server",
+  "version_date": "2019-11-28T16:12:07.011819Z",
+  "user_defined": true
+}
+```
+
+Next, lets add a custom price to the `hr_admin_overhead`. In this example the organization runs 1,000 servers with an IT team comprising of 15 people. Each team-member costs \$100,000 on average per year. So the HR admin overhead per server, per hour is
+
+`(100000*15)/1000 = $1500` per server, per year; or about \$0.17 per server, per hour.
+
+So lets post a custom price to the `hr_admin_overhead` service.
+
+```bash
+curl -X POST \
+  http://127.0.0.1:8000/api/v1.0/calc/price/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImJic2VydmljZWFjY291bnQiLCJleHAiOjE1NzQ5NjIyMzIsImVtYWlsIjoiIn0.6ZmIczIXvers4SFRsOowZqBtMqpD9rHwzChH_shOUlE' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "service_name": "hr_admin_overhead",
+    "name": "hr_overhead_cost",
+    "service_pk": "512c4c227fc31be9291f0c8e392dc930f1b1f9e0b20776df81e5a986",
+    "costperunit": 0.17,
+    "location": "anywhere"
+}'
+```
+
+Now we are ready to add the `hr_admin_overhead` to an application. In this case lets assume the application is running in AWS. The VMs will be selected from the Azure `aze` provider and the `hr_admin_overhead` will be selected from the `overheads` provider we just created. Like so
+
+```bash
+curl -X POST \
+  http://127.0.0.1:8000/api/v1.0/calc/applications/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImJic2VydmljZWFjY291bnQiLCJleHAiOjE1NzUwNDkxNTcsImVtYWlsIjoiIn0.PhWO2M7kcA280dCM26NjsGYGDOK4dnGFLY01KSz-SyM' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "app_name": "User-application-in-AZURE, with overhead added",
+  "description": "This is an application the customer currently runs in AZURE public cloud and has hr admin overheads",
+  "services": [
+    {
+      "service_type": "aze-standard_f2",
+      "location": "canadacentral",
+      "price_type": "onDemandPrice",
+      "provider": "aze",
+      "quantity": 8,
+      "attributes": [
+        {
+          "attr_id": "quantity",
+          "value": 8
+        }
+      ]
+    },
+    {
+      "service_type": "aze-standard_b8ms",
+      "location": "eastus2",
+      "price_type": "onDemandPrice",
+      "provider": "aze",
+      "quantity": 9,
+      "attributes": [
+        {
+          "attr_id": "quantity",
+          "value": 9
+        }
+      ]
+    },
+    {
+      "service_type": "hr_admin_overhead",
+      "location": "anywhere",
+      "price_type": "hr_overhead_cost",
+      "provider": "ove",
+      "quantity": 17,
+      "attributes": [
+        {
+          "attr_id": "quantity",
+          "value": 17
+        }
+      ]
+    }
+  ]
+}
+'
+```
+
+Note the quantity has been set to `0.17` - since we calculated earlier that each server has a \$0.17 hr admin overhead per hour.
+
+Next, lets got a cost report on the application
+
+```bash
+curl -X GET \
+  'http://127.0.0.1:8000/api/v1.0/calc/reports/applications/app_name/User-application-in-AZURE,%20with%20overhead%20added/' \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImJic2VydmljZWFjY291bnQiLCJleHAiOjE1NzUwNDkxNTcsImVtYWlsIjoiIn0.PhWO2M7kcA280dCM26NjsGYGDOK4dnGFLY01KSz-SyM' \
+  -H 'Content-Type: application/json' \
+```
+
+This returns the following json
+
+```json
+{
+  "application": {
+    "app_name": "User-application-in-AZURE, with overhead added",
+    "date_created": "2019-11-28T17:50:33.122670Z",
+    "pk_hash": "9a2564fe4d32cec895cb0f1b5ae87c0550165baf40a088e25054d4cd",
+    "services": [
+      {
+        "attributes": [
+          {
+            "attr_id": "quantity",
+            "value": "8"
+          }
+        ],
+        "service_type": "aze-standard_f2",
+        "version_date": "2019-11-03T20:21:41.645718Z",
+        "pk_hash": "f39943de1852e7746abfcd03dc8fec23cdc3666096b114cda98fcaf7",
+        "location": "canadacentral",
+        "price_type": "onDemandPrice",
+        "provider": "aze"
+      },
+      {
+        "attributes": [
+          {
+            "attr_id": "quantity",
+            "value": "9"
+          }
+        ],
+        "service_type": "aze-standard_b8ms",
+        "version_date": "2019-11-03T20:22:29.255322Z",
+        "pk_hash": "ed44b2fc3989778c09aa8dbe171708bb4a9bbadd4afa3c4e90644881",
+        "location": "eastus2",
+        "price_type": "onDemandPrice",
+        "provider": "aze"
+      },
+      {
+        "attributes": [
+          {
+            "attr_id": "quantity",
+            "value": "17"
+          }
+        ],
+        "service_type": "hr_admin_overhead",
+        "version_date": "2019-11-28T17:50:23.796307Z",
+        "pk_hash": "72456047a3bac812aa2269a352aaab0699a6fa3be61dc0331a1f8a49",
+        "location": "anywhere",
+        "price_type": "hr_overhead_cost",
+        "provider": "overheads"
+      }
+    ],
+    "description": "This is an application the customer currently runs in AZURE public cloud and has hr admin overheads"
+  },
+  "cost_components": [
+    {
+      "numcpus": "2",
+      "memory": "4",
+      "currentGen": "False",
+      "quantity": "8",
+      "service": "aze-standard_f2",
+      "unit_cost": 0.104,
+      "discount": 0,
+      "unit": "",
+      "location": "canadacentral",
+      "service_cost": 0.83,
+      "price_type": "onDemandPrice",
+      "price_version_date": "2019-11-04T15:44:28.703193Z"
+    },
+    {
+      "numcpus": "8",
+      "memory": "32",
+      "currentGen": "False",
+      "quantity": "9",
+      "service": "aze-standard_b8ms",
+      "unit_cost": 0.333,
+      "discount": 0,
+      "unit": "",
+      "location": "eastus2",
+      "service_cost": 3.0,
+      "price_type": "onDemandPrice",
+      "price_version_date": "2019-11-03T20:22:29.258705Z"
+    },
+    {
+      "quantity": "17",
+      "service": "hr_admin_overhead",
+      "unit_cost": 0.17,
+      "discount": 0,
+      "unit": "per server",
+      "location": "anywhere",
+      "service_cost": 2.89,
+      "price_type": "hr_overhead_cost",
+      "price_version_date": "2019-11-28T17:50:26.170275Z"
+    }
+  ],
+  "total_cost": 6.720000000000001
+}
+```
+
+The servicetype `hr_admin_overhead`, with quantity 17, is now a component of the total cost in the report.
+
+We can also run the optimization or matching to another cloud provider as usual. In this case the admin cost is carried over as it is constant per server, no matter where the server is hosted.
+
+For example, here we query porting the application to AWS.
+
+```bash
+curl -X GET \
+  'http://127.0.0.1:8000/api/v1.0/calc/applications/app_name/User-application-in-AZURE,%20with%20overhead%20added/provider/aws/pricetype/reserved1yearPrice' \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImJic2VydmljZWFjY291bnQiLCJleHAiOjE1NzUwNDkxNTcsImVtYWlsIjoiIn0.PhWO2M7kcA280dCM26NjsGYGDOK4dnGFLY01KSz-SyM' \
+  -H 'Content-Type: application/json' \
+```
+
+And this yields
+
+```json
+{
+  "application": {
+    "app_name": "User-application-in-AZURE, with overhead added",
+    "date_created": "2019-11-28T17:50:33.122670Z",
+    "pk_hash": "9a2564fe4d32cec895cb0f1b5ae87c0550165baf40a088e25054d4cd",
+    "services": [
+      {
+        "attributes": [
+          {
+            "attr_id": "quantity",
+            "value": "8"
+          }
+        ],
+        "service_type": "aze-standard_f2",
+        "version_date": "2019-11-03T20:21:41.645718Z",
+        "pk_hash": "f39943de1852e7746abfcd03dc8fec23cdc3666096b114cda98fcaf7",
+        "location": "canadacentral",
+        "price_type": "onDemandPrice",
+        "provider": "aze"
+      },
+      {
+        "attributes": [
+          {
+            "attr_id": "quantity",
+            "value": "9"
+          }
+        ],
+        "service_type": "aze-standard_b8ms",
+        "version_date": "2019-11-03T20:22:29.255322Z",
+        "pk_hash": "ed44b2fc3989778c09aa8dbe171708bb4a9bbadd4afa3c4e90644881",
+        "location": "eastus2",
+        "price_type": "onDemandPrice",
+        "provider": "aze"
+      },
+      {
+        "attributes": [
+          {
+            "attr_id": "quantity",
+            "value": "17"
+          }
+        ],
+        "service_type": "hr_admin_overhead",
+        "version_date": "2019-11-28T17:50:23.796307Z",
+        "pk_hash": "72456047a3bac812aa2269a352aaab0699a6fa3be61dc0331a1f8a49",
+        "location": "anywhere",
+        "price_type": "hr_overhead_cost",
+        "provider": "overheads"
+      }
+    ],
+    "description": "This is an application the customer currently runs in AZURE public cloud and has hr admin overheads"
+  },
+  "current_application": {
+    "components": [
+      {
+        "numcpus": "2",
+        "memory": "4",
+        "currentGen": "False",
+        "quantity": "8",
+        "service_type": "aze-standard_f2",
+        "unit_cost": 0.104,
+        "discount": 0,
+        "unit": "",
+        "location": "canadacentral",
+        "service_cost": 0.83,
+        "price_type": "onDemandPrice",
+        "price_version_date": "2019-11-04T15:44:28.703193Z"
+      },
+      {
+        "numcpus": "8",
+        "memory": "32",
+        "currentGen": "False",
+        "quantity": "9",
+        "service_type": "aze-standard_b8ms",
+        "unit_cost": 0.333,
+        "discount": 0,
+        "unit": "",
+        "location": "eastus2",
+        "service_cost": 3.0,
+        "price_type": "onDemandPrice",
+        "price_version_date": "2019-11-03T20:22:29.258705Z"
+      },
+      {
+        "quantity": "17",
+        "service": "hr_admin_overhead",
+        "unit_cost": 0.17,
+        "discount": 0,
+        "unit": "per server",
+        "location": "anywhere",
+        "service_cost": 2.89,
+        "price_type": "hr_overhead_cost",
+        "price_version_date": "2019-11-28T17:50:26.170275Z"
+      }
+    ],
+    "total_cost": 6.720000000000001
+  },
+  "alternative_option": {
+    "components": [
+      {
+        "costph": 0.0263,
+        "discount": 0,
+        "quantity": "8",
+        "servicetype": "aws-t3a.medium",
+        "price_type": "reserved1yearPrice",
+        "location": "ca-central-1",
+        "service_cost": 0.21,
+        "gpus": "0",
+        "numcpus": "2",
+        "memory": "4",
+        "ntwPerf": "Low to Moderate",
+        "instanceTypeCategory": "General purpose",
+        "currentGen": "True",
+        "predbogo": "N/A",
+        "predcpu": "N/A",
+        "tgzfilename": "N/A",
+        "epoch-secs": "N/A",
+        "minbogo": "N/A",
+        "maxbogo": "N/A",
+        "warning": "alternative for service aze-standard_f2 in canadacentral with reserved1yearPrice could not be found based on performance, response may be unchanged or contain alternative based on attributes instead."
+      },
+      {
+        "costph": 0.1886,
+        "discount": 0,
+        "quantity": "9",
+        "servicetype": "aws-t3a.2xlarge",
+        "price_type": "reserved1yearPrice",
+        "location": "us-east-2",
+        "service_cost": 1.7,
+        "gpus": "0",
+        "numcpus": "8",
+        "memory": "32",
+        "ntwPerf": "Moderate",
+        "instanceTypeCategory": "General purpose",
+        "currentGen": "True",
+        "predbogo": "N/A",
+        "predcpu": "N/A",
+        "tgzfilename": "N/A",
+        "epoch-secs": "N/A",
+        "minbogo": "N/A",
+        "maxbogo": "N/A",
+        "warning": "alternative for service aze-standard_b8ms in eastus2 with reserved1yearPrice could not be found based on performance, response may be unchanged or contain alternative based on attributes instead."
+      },
+      {
+        "costph": 0.17,
+        "error": "alternative for service hr_admin_overhead in anywhere with reserved1yearPrice not found, partial data/costs returned",
+        "discount": 0,
+        "quantity": "17",
+        "servicetype": "hr_admin_overhead",
+        "price_type": "reserved1yearPrice",
+        "location": "anywhere",
+        "service_cost": 2.89,
+        "warning": "alternative for service hr_admin_overhead in anywhere with reserved1yearPrice could not be found based on performance, response may be unchanged or contain alternative based on attributes instead."
+      }
+    ],
+    "total_cost": 4.8
+  }
+}
+```
+
+Custom Providers, such as the `overheads` provider we created above, can be can be deleted too, but only after all applications with servicetypes from the provider have been deleted. Otherwise the API will not allow custom provider deletion.
+
+```bash
+curl -X DELETE \
+  http://127.0.0.1:8000/api/v1.0/calc/provider/ove/ \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImJic2VydmljZWFjY291bnQiLCJleHAiOjE1NzUwNDkxNTcsImVtYWlsIjoiIn0.PhWO2M7kcA280dCM26NjsGYGDOK4dnGFLY01KSz-SyM' \
+  -H 'Content-Type: application/json' \
+```
+
+This DELETE request returns `204 No Content`.
+
+<div style="page-break-after: always;"></div>
 
 **Table of Contents**
 
@@ -1539,11 +2378,13 @@ curl -X GET \
     - [1.2.6. VM Optimization](#126-vm-optimization)
     - [1.2.7. Updating an Application](#127-updating-an-application)
     - [1.2.8. Deleting an Application](#128-deleting-an-application)
+    - [1.2.9 Deleting multiple applications](#129-deleting-multiple-applications)
   - [1.3. Prices](#13-prices)
     - [1.3.1. Creating a new price for a service (POST)](#131-creating-a-new-price-for-a-service-post)
     - [1.3.2. Get price details about a pre-existing price (GET)](#132-get-price-details-about-a-pre-existing-price-get)
     - [1.3.3. Updating the costperunit for a pre-existing price (PUT)](#133-updating-the-costperunit-for-a-pre-existing-price-put)
     - [1.3.4. Deleting a price (DELETE)](#134-deleting-a-price-delete)
+    - [1.3.5 Deleting multiple prices (POST)](#135-deleting-multiple-prices-post)
     - [1.3.5. Filtering Price data](#135-filtering-price-data)
       - [1.3.5.1. Getting all prices for a service type](#1351-getting-all-prices-for-a-service-type)
       - [1.3.5.2 Get the price of a ServiceType (specified by its service_pk) of a certain pricetype](#1352-get-the-price-of-a-servicetype-specified-by-its-service_pk-of-a-certain-pricetype)
@@ -1553,6 +2394,14 @@ curl -X GET \
     - [1.4.1. Create a new service type (POST)](#141-create-a-new-service-type-post)
     - [1.4.2. Retrieve a service type (GET)](#142-retrieve-a-service-type-get)
     - [1.4.3. Deleting a service type (DELETE)](#143-deleting-a-service-type-delete)
-    - [1.4.4. Finding service types](#144-finding-service-types)
-      - [1.4.4.1. Service type keyword search](#1441-service-type-keyword-search)
-      - [1.4.4.2. List all service types](#1442-list-all-service-types)
+    - [1.4.4 Deleting multiple service types (POST)](#144-deleting-multiple-service-types-post)
+    - [1.4.5. Finding service types](#145-finding-service-types)
+      - [1.4.5.1. Service type keyword search](#1451-service-type-keyword-search)
+      - [1.4.5.2. List all service types](#1452-list-all-service-types)
+  - [1.5. ProviderDiscounts](#15-providerdiscounts)
+    - [1.5.1. Create a new discount (POST)](#151-create-a-new-discount-post)
+    - [1.5.2. Retrieve a discount (GET)](#152-retrieve-a-discount-get)
+    - [1.5.3. Updating the discount amount for a pre-existing discount (PUT)](#153-updating-the-discount-amount-for-a-pre-existing-discount-put)
+    - [1.5.4. Deleting a discount (DELETE)](#154-deleting-a-discount-delete)
+    - [1.5.5. Listing all discounts](#155-listing-all-discounts)
+  - [1.6. Providers](#16-providers)

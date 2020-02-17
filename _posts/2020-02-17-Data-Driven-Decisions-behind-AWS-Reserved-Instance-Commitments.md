@@ -67,7 +67,7 @@ There is approximately a 20% difference between the 1- and 3-year discounts. Sho
 
  2. **Age of the VM Service Type:** Always find out about how “old” a VM-type being offered is. If they are older generations then you should consider switching your VM class to a newer class before you buy reserved instances. Afterall, if you buy 3-year instances on a VM class that was released 3-4 years ago, then you will be stuck with running your applications on 6-7 year old server hardware later.
 
-In addition to these two considerations it is important to consider convertible reservations; but first check  the convertible premium for the reserved instances you are planning to use.
+In addition to these two considerations it is important to consider convertible reservations; but first check the convertible premium for the reserved instances you are planning to use.
 
 ---
 

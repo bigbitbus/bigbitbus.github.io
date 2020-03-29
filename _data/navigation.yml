@@ -1,16 +1,23 @@
-- name: BigBitbus SaaS API Backend
-  link: https://b3api.bigbitbus.com 
-  new_window: true
-  highlight: false 
-- name: BigBitBus Console
+- name: Console
   link: https://b3console.bigbitbus.com 
   new_window: true
   highlight: false
-- name: Public Cloud Catalog
+
+- name: Console Tour
+  link: /frontend-documentation
+  new_window: true
+  highlight: true
+
+- name: API
+  link: https://b3api.bigbitbus.com 
+  new_window: true
+  highlight: false 
+
+- name:  Catalog
   link: https://b3api.bigbitbus.com/data/prices/ 
   new_window: true
   highlight: false
-- name: Product Pricing
+- name: Pricing
   link: /pricing/
   new_window: false
   highlight: false

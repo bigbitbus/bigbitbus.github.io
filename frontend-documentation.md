@@ -13,7 +13,7 @@ Visit our [website](https://bigbitbus.com) to watch a more detailed demo and lea
 
 You can create an account by logging into BigBitBus using your Google account. Click on the "Google Login" button. The same credentials can be used to log into the console subsequently.
 
-![Using Google Social Login to log into the BigBitBus Console](google-login.gif)
+![Using Google Social Login to log into the BigBitBus Console](google-login-small.gif)
 
 A few demo stacks are automatically created for new users.
 
@@ -26,7 +26,7 @@ Stacks describe an IT application infrastructure that may employ one or more kin
 
 Its important to note that stacks model your infrastructure, they don't actually stand up any real infrastructure in a cloud provider!
 
-![The list of your stacks; clicking on detail lets you view the tiers and cost of your stack and its tier components.](stacks.gif)
+![The list of your stacks; clicking on detail lets you view the tiers and cost of your stack and its tier components.](stacks-small.gif)
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/2axhGSL3LSE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
@@ -46,7 +46,7 @@ For virtual machines, you can use these attributes to enter data needed for runn
 | memsizemin  | 2  | In Gigabytes (GB), the minimum memory size you want your VMs to have, this value is optional  |
 | memsizemax  | 8  | In Gigabytes (GB), the maximum memory size you want your VMs to have, this value is optional  |
 
-![Optimize your stack: improve performance and/or lower costs](create_new_stack.gif)
+![Optimize your stack: improve performance and/or lower costs](create_new_stack-small.gif)
 
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/e1WxHlcMsGw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -61,7 +61,7 @@ You can find analogous service types for each tier of your stack using the "matc
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/Q_wFmeeCD5E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  -->
-![Match your stack: find alternatives](stack_matching.gif)
+![Match your stack: find alternatives](stack_matching-small.gif)
 
 
 ## Stack Optimization
@@ -69,7 +69,7 @@ You can find analogous service types for each tier of your stack using the "matc
 
 BigBitBus has collected performance data 1000s of virtual machine service types (ranging from 1-32 vCPUs) across different cloud providers. You can Use stack optimiztion by telling the system how much CPU and memory is currently utilized by the tier's services; the system then finds appropriate VMs in the target cloud provider that will satisfy your application stack's demand. If BigBitBus does not have performance data then it will fall back to try to match analogous service types based on attributes like the number of vCPUs or memory size.
 
-![Optimize your stack: improve performance and/or lower costs](stack_optimization.gif)
+![Optimize your stack: improve performance and/or lower costs](stack_optimization-small.gif)
 
 
 
@@ -81,7 +81,7 @@ BigBitBus maintains over 10,000 service types being offered by different cloud p
 
 There are also advanced options for creating your own "provider" and add service types to it.
 
-![The list of cloud provider service types that can be used to compose tiers and stacks](servicelistfilter.gif)
+![The list of cloud provider service types that can be used to compose tiers and stacks](servicelistfilter-small.gif)
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/tjDhJ-Z36Rw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
@@ -92,7 +92,7 @@ Each service type can have multiple prices based on whether you are buying on-de
 
 There are also advanced options for creating your own price for any service type. In addition, you can specify blanket discounts for a certain provider. For example, if you have negotiated a flat 10% discount on your AWS bill then this can be applied across your stacks.
 
-![The list of cloud provider service types that can be used to compose tiers and stacks](pricelistfilter.gif)
+![The list of cloud provider service types that can be used to compose tiers and stacks](pricelistfilter-small.gif)
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/XylrAw524mA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 

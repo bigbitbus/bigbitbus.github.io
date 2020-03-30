@@ -15,8 +15,13 @@
   #   link: /
   #   new_window: true
   - name: Docs
-    link: /documentation
+    link: /frontend-documentation
     new_window: true
+
+  - name: Jobs
+    link: /jobs/
+    new_window: false
+  
   # - name: Status
   #   link: /
   #   new_window: true

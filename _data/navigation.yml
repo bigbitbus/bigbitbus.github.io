@@ -3,7 +3,7 @@
   new_window: true
   highlight: false
 
-- name: Console Tour
+- name: Tour
   link: /frontend-documentation
   new_window: true
   highlight: true
@@ -25,10 +25,7 @@
   link: /blog/
   new_window: false
   highlight: false
-- name: Jobs
-  link: /jobs/
-  new_window: false
-  highlight: false
+
 - name: Contact
   link: /contact/
   new_window: false

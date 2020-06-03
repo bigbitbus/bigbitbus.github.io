@@ -17,7 +17,8 @@ You can create an account by logging into BigBitBus using your Google account. C
 
 A few demo stacks are automatically created for new users.
 
-<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/cbIXPA15Ewg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cbIXPA15Ewg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 
 ## Stacks

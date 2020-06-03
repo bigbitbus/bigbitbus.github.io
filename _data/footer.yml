@@ -22,6 +22,10 @@
     link: /jobs/
     new_window: false
   
+  - name: Privacy Policy
+    link: /privacy/
+    new_window: false
+  
   # - name: Status
   #   link: /
   #   new_window: true

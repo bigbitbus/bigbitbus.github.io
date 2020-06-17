@@ -13,10 +13,10 @@
   new_window: true
   highlight: false 
 
-- name:  Catalog
-  link: https://b3api.bigbitbus.com/data/prices/ 
-  new_window: true
-  highlight: false
+# - name:  Catalog
+#   link: https://b3api.bigbitbus.com/data/prices/ 
+#   new_window: true
+#   highlight: false
 - name: Pricing
   link: /pricing/
   new_window: false

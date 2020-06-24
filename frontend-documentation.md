@@ -98,7 +98,13 @@ There are also advanced options for creating your own price for any service type
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/XylrAw524mA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
 
+## Sharing
+
+Most page views inside the B3Console can be shared publicly via URL links and through LinkedIn and Twitter. A "Share" button is provided at the top right to quickly create publicly accessible "shares" of the view. Shares can be viewed by anyone with the URL and expire after a user-specified period. Note that shares are HTML files with sponsor links to support the service.
+
+![Creating a Stack Share](share-stack.gif)
+
 ## Learn more
 
-Visit our [website](https://www.bigbitbus.com/) to watch a more detailed demo and learn more.
+Visit our [website](https://www.bigbitbus.com/) to learn more.
 

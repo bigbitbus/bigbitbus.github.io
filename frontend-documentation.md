@@ -3,7 +3,7 @@ title: BigBitBus Console Quickstart
 heading: BigBitBus Console Quickstart
 ---
 
-Welcome to the BigBitBus Console. The BigBitBus Console is a free tool to compare different cloud provider services, and their relative costs. Users can quickly compute many what-if scenarios of different application sizing, different types of services - for example the size of VMs to build their application stack. They can choose to share these scenarios with their colleagues or on social media. We currently store service and pricing information for Amazon AWS, Azure Google Cloud GCP and Alibaba Cloud, primarily for compute services (VMs); we are rapidly expanding our catalog to include other cloud providers and service types.
+Welcome to the BigBitBus Console. The BigBitBus Console is a tool to compare different cloud provider services and costs. Users can quickly compute many what-if scenarios of different application sizing, different types of services - for example the size of VMs to build their application stack. They can choose to share these scenarios with their colleagues or on social media. We currently store service and pricing information for Amazon AWS, Azure Google Cloud GCP and Alibaba Cloud, primarily for compute services (VMs); we are rapidly expanding our catalog to include other cloud providers and service types.
 
 Ready to do some quick back-of-envelope architecture and price planning? Or, curious to know if "that-other-cloud-provider" is more cost effective for your use-cases? Follow along this walkthrough and start making data-driven informed choices around your public cloud provider choices.
 

@@ -4,31 +4,32 @@ heading: Jobs at BigBitBus
 ---
 
 
-## Programming Data Analyst Coop
+## BigBitBus: Programming Data Analyst Coop or Internship
 
-We are building a diverse catalog of cloud computing services available across cloud providers and we need your help to collect and visualize data from the Internet. BigBitBus Inc. is looking to hire a coop with data analysis and programming knowledge for the summer and fall of 2020. We will consider candidates for  8- months or more coops/internships starting Fall 2020. 
+We are an Ontario, Canada based incorporated technology start-up located in Waterloo. BigBitBus Inc. is looking to hire a coop or intern with programming and data analysis skills for an 8 month coop starting January 2021.
 
-All positions are on-site in our uptown Waterloo office.
+BigBitBus Inc. helps organizations with devops, cloud and big data services to accelerate their cloud and big-data journey and maximize their cloud IT investments. We build tools and technologies to help enterprise IT make data-driven decisions about cloud providers and application architectures that maximize return-on-investment from cloud technology. We bring our expertise and experience in infrastructure-as-code, devops, big-data, security, automation, full-stack development and mapping business processes to cloud service offerings. Our comparison API product  (Try it at https://b3console.bigbitbus.com) provides updated performance and cost comparison information between cloud and big data/analytics providers and in-house private cloud and public cloud providers. In this role you will be working on projects for clients in their cloud and big-data journey as well as helping develop the in-house BigBitBus API.
 
-BigBitBus Inc., an IT services company based out of Communitech's Datahub in uptown Waterloo, helps organizations with devops, cloud and big data services to accelerate their cloud and big-data journey and maximize their cloud IT investments. We bring our expertise and experience in infrastructure-as-code, devops, big-data, security, automation, full-stack development and mapping business processes to cloud service offerings. Our comparison API product provides updated performance and cost comparison information between cloud and big data/analytics providers or even between in-house private cloud and public cloud providers. In this role you will be working on projects for clients in their cloud and big-data journey as well as helping develop the in-house BigBitBus API.
 
 ## Requirements
 
-    1. Programming experience in Go or Python.
-    2. Proficiency in scraping data from the web and data parsing/wrangling, cleaning(e.g. using Python, Selenium web driver, and similar technologies)
-    3. Knowledge of dash-boarding using D3JS/Tableau etc.: visualization in a web context; should have demonstrable projects with data visualization component(s).
-    4. Understanding and experience of how a HTTP web API works - e.g. having used an API like Google Maps.
+
+1. Programming experience in Go or Python.
+2. Web design (javascript/css/html)
+3. Knowledge of dash-boarding using D3JS/Tableau etc.: visualization in a web context; should have demonstrable projects with data visualization component(s).
+4. Understanding and experience of how a HTTP web API works - e.g. having used an API like Google Maps.
+
 
 ### Bonus
 
-    Knowledge of SQL
-    has worked with any public cloud provider (AWS/Google Cloud/Azure etc.) or private cloud like Openstack
-    Web design (javascript/css/html)
-    Bash scripting on a mac/Linux platform
+Knowledge of SQL
+Knowledge of the Python Django Web Framework
+has worked with any public cloud provider (AWS/Google Cloud/Azure etc.) or private cloud like Openstack
+Bash scripting on a mac/Linux platform
 
 ### Contract length: 
 
-8 months, starting Fall 2020.
+8 months, starting January 2021.
 
 ### Job Type: 
 
@@ -36,4 +37,4 @@ Coop/Internship
 
 ## How to apply
 
-Email your resume, availability, and a cover letter addressing the above requirements to <contact@bigbitbus.com>.
+To apply, send your resume and a cover letter to contact@bigbitbus.com with the subject line "January-August 2021 at BigBitBus" and your name. For example: "January-August 2021 at BigBitBus John Doe"

@@ -3,19 +3,19 @@ title: BigBitBus Console Quickstart
 heading: BigBitBus Console Quickstart
 ---
 
-Welcome to the BigBitBus Console. The BigBitBus Console is a tool to compare different cloud provider services and costs. Users can quickly compute many what-if scenarios of different application sizing, different types of services - for example the size of VMs to build their application stack. They can choose to share these scenarios with their colleagues or on social media. We currently store service and pricing information for Amazon AWS, Azure Google Cloud GCP and Alibaba Cloud, primarily for compute services (VMs); we are rapidly expanding our catalog to include other cloud providers and service types.
+Welcome to the BigBitBus Console. The BigBitBus Console (B3Console) is a tool to compare different cloud provider services' attributes, their performance and costs. We currently offer service and on-demand/reserved pricing information for Amazon AWS, Azure Google Cloud GCP and Alibaba Cloud, primarily for compute services (VMs); we are rapidly expanding our catalog to include other cloud providers and service types.
 
-Ready to do some quick back-of-envelope architecture and price planning? Or, curious to know if "that-other-cloud-provider" is more cost effective for your use-cases? Follow along this walkthrough and start making data-driven informed choices around your public cloud provider choices.
+Ready to do some quick back-of-envelope architecture and price planning? Or, curious to know if "the-other-cloud-provider" is more cost effective for your use-case? Follow along this walk-through and start making data-driven informed choices around public cloud providers.
 
+Lets start with signing into the B3Console.
 
 ## Account Creation and Login
 <a name="login"></a>
 
-You can create an account by logging into BigBitBus using your Google account. Click on the "Google Login" button. The same credentials can be used to log into the console subsequently.
+You can create an account by logging into BigBitBus using your Google, Gsuite or Github account. For this example lets use Google. Click on the "Google Login" button. The same credentials can be used to log into the console subsequently. 
 
 ![Using Google Social Login to log into the BigBitBus Console](google-login-small.gif)
 
-A few demo stacks are automatically created for new users.
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/cbIXPA15Ewg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
@@ -23,9 +23,9 @@ A few demo stacks are automatically created for new users.
 
 ## Stacks
 <a name="stacks"></a>
-Stacks describe an IT application infrastructure that may employ one or more kind of cloud service. Identical services (e.g. a specific VM type in a given cloud provider location) are grouped as different "tiers". There can be one or more identical service types comprising a "tier". 
+After you log in you will see a list of your "stacks". A few demo stacks are automatically created for new users. Stacks describe an IT application's infrastructure and may employ one or more kinds of cloud services. Identical services (e.g. a specific VM type in a given cloud provider location) are grouped as different "tiers". There can be one or more identical service types comprising a "tier". For example, the `bigbitbus_sample_bigdata_apache_spark_cluster` example has a master node tier with 3 `aws-c5.2xlarge` VMs and an application server tier comprised of 32 `aws-m5.large` VMs.
 
-Its important to note that stacks model your infrastructure, they don't actually stand up any real infrastructure in a cloud provider!
+Its important to note that stacks model your infrastructure, they don't actually stand up any real infrastructure in a cloud provider! So you are free to create, update and experiment with any combination of services.
 
 ![The list of your stacks; clicking on detail lets you view the tiers and cost of your stack and its tier components.](stacks-small.gif)
 
@@ -35,10 +35,11 @@ Clicking on "detail" lets you view the tiers and cost of your stack and its tier
 
 ## Creating New Stacks
 <a name="create_new_stack"></a>
-You can create your own stack by clicking on "Add stack". After specifying a name, description (optional) and metadata (optional), we start adding tiers; service type and price tables are available to "populate" the forms.
+You can create your own stack by clicking on "Add stack". After specifying a name, description (optional) and metadata (optional), start adding tiers; service type and price tables are available to "populate" the forms by clicking the button `WITH SERVICES` at the top of the form.
 
+Once you have successfully created a stack you can use it to find alternative configurations in other cloud providers.
 
-For virtual machines, you can use these attributes to enter data needed for running the optimization workflow, above. If you don't specify these then all optimize requests will instead return attribute matching.
+Each tier in the stack is comprised of a service type. There may be multiple instances of the same service type within a tier. You can also add arbitrary key-value "service attributes" to each tier. For virtual machines, you can optionally add specific attributes to enter data needed for running the optimization workflow. If you don't specify these then all optimize requests will instead return attribute matching.
 
 |  key | Example value  | Note |
 |---|---|---|
@@ -68,11 +69,14 @@ You can find analogous service types for each tier of your stack using the "matc
 ## Stack Optimization
 <a name="stack_optimization"></a>
 
-BigBitBus has collected performance data 1000s of virtual machine service types (ranging from 1-32 vCPUs) across different cloud providers. You can Use stack optimiztion by telling the system how much CPU and memory is currently utilized by the tier's services; the system then finds appropriate VMs in the target cloud provider that will satisfy your application stack's demand. If BigBitBus does not have performance data then it will fall back to try to match analogous service types based on attributes like the number of vCPUs or memory size.
+BigBitBus has collected performance data 1000s of virtual machine service types (ranging from 1-32 vCPUs) across different cloud providers. You can Use stack optimiztion by telling the system how much CPU and memory is currently utilized by the tier's services; the system then finds appropriate VMs in the target cloud provider that will satisfy your application stack's demand. If BigBitBus does not have performance data then it will fall back to match analogous service types based on attributes like the number of vCPUs or memory size.
 
 ![Optimize your stack: improve performance and/or lower costs](stack_optimization-small.gif)
 
 
+## Service Comparison
+
+You can also compare individual services with each other. After finding the service you wish to compare click on `Compare` and select a second service. A tabular comparison of the two services is presented.
 
 
 ## Service List

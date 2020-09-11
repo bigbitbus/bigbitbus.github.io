@@ -18,7 +18,7 @@ Create  one or more stacks of different VMs  which comprise your application(s).
 4. *Perform a "what-if" cloud migration cost analysis.*
 If you are looking at other cloud providers for technical, cost, or security reasons the B3Console can  "translate" your stack into the target provider. That way you know what corresponding VMs are available on the target provider and what they cost, all before you actually PoC anything.
 
-5. *Plan reservations to avoid on-demand prices.*
+5. *Plan reservations to avoid higher on-demand prices.*
 Our tool lets you calculate the total cost of your stack or service based on on-demand and reserved 1- or 3-year pricing. You can now make a data-driven choice of when its time to buy reservations and reduce your cloud bill.
 
 6. *Download data into a spreadsheet.*

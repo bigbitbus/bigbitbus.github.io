@@ -4,6 +4,8 @@ title:      Ten Things You can Do With the B3Console Today
 published:  true
 ---
 
+Here are 10 things you can do with the [B3Console](https://b3console.bigbitbus.com) today, and some reasons why you may want to try it out.
+
 1. *Compare VMs.*
 You can compare the specifications and prices of virtual machines across the 5 cloud providers we support: GCP, AWS, Azure, Alibaba and Linode.
 

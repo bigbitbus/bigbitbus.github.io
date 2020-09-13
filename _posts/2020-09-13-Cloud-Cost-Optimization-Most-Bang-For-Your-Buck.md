@@ -6,7 +6,7 @@ published:  true
 
 *Cloud users want to optimize their public cloud bills. A multi-pronged approach will yield the maximum benefits but some methods give you more bang-for-your-buck than others. We list the methods in decreasing order of impact so you can focus on the most impactful ones.*
 
-BigBitBus helps cloud users reduce cloud computing costs. We have spent thousands of hours looking at different application stacks across small and large organizations and learnt where to look for inefficiencies. Here is the distilled zen of that experience. Presented in decreasing order of impact, along with a percentage of relative importance in our opinion.
+We have spent thousands of hours looking at different application stacks across small and large organizations and learnt where to look for inefficiencies in their cloud spend. Here is what we learnt, presented in decreasing order of impact, along with a percentage of relative importance in our opinion.
 
 *Code Optimization - 30%*
 
@@ -46,5 +46,6 @@ Lets face it, big cloud providers have 1000s of enterprise users so no matter ho
 
 Locking down cloud access across the developers of your organization in the hope this will control costs is a fallacy. Sure, you can set an upper bound on what each developer can consume in order to prevent fat-finger cloud errors, but locking down your cloud stiffles innovation, promotes shadow IT (for example developers using personal cloud accounts for development), and erodes trust. Remember, developers are probably more expensive than your cloud bill!
 
+All the above only sum up to 90%; tell us if something else worked for you and we'll add it to the list!
 
 *BigBitBus is on a mission to bring greater transparency in public cloud and managed big data and analytics services. Talk to us about how you can architect your cloud IT assets to maximize your returns on investment.*

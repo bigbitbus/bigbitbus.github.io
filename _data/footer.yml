@@ -2,27 +2,36 @@
   - name: Console
     link: https://b3console.bigbitbus.com/
     new_window: true
+    icon: fa fa-cloud
   - name: API
     link: https://b3api.bigbitbus.com/
-    icon: server
+    icon: fa fa-cogs
     new_window: true
   - name: Blog
     link: /blog/
+    icon: fa fa-archive
   - name: Docs
     link: /frontend-documentation
     new_window: true
+    icon: fa fa-file-pdf-o
+
 - links:
   - name: About
     link: https://www.youtube.com/watch?v=hMyT-QMIWxU
     new_window: true
+    icon: fa fa-info-circle
   - name: Contact
     link: /contact/
+    icon: fa fa-phone
   - name: Jobs
     link: /jobs/
+    icon: fa fa-institution
     new_window: false  
   - name: Privacy Policy
     link: /privacy/
     new_window: false
+    icon: fa fa-user
+
 - links:
   - name: LinkedIn
     link: https://www.linkedin.com/company/bigbitbus/

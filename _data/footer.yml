@@ -1,7 +1,6 @@
 - links:
   - name: Console
     link: https://b3console.bigbitbus.com/
-    icon: 
     new_window: true
   - name: API
     link: https://b3api.bigbitbus.com/

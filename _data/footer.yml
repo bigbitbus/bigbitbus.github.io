@@ -1,48 +1,43 @@
 - links:
-  # - name: Services
-  #   link: /services/
+  - name: Console
+    link: https://b3console.bigbitbus.com/
+    icon: 
+    new_window: true
+  - name: API
+    link: https://b3api.bigbitbus.com/
+    icon: server
+    new_window: true
   - name: Blog
     link: /blog/
-  # - name: About
-  #   link: /about/
-  - name: Contact
-    link: /contact/
-- links:
-  # - name: Login
-  #   link: /
-  #   new_window: true
-  # - name: Sign Up
-  #   link: /
-  #   new_window: true
   - name: Docs
     link: /frontend-documentation
     new_window: true
-
+- links:
+  - name: About
+    link: https://www.youtube.com/watch?v=hMyT-QMIWxU
+    new_window: true
+  - name: Contact
+    link: /contact/
   - name: Jobs
     link: /jobs/
-    new_window: false
-  
+    new_window: false  
   - name: Privacy Policy
     link: /privacy/
     new_window: false
-  
-  # - name: Status
-  #   link: /
-  #   new_window: true
 - links:
-  # - name: Facebook
-  #   link: https://facebook.com/cloudcannon/
-  #   new_window: true
-  #   social_icon: Facebook
-  # - name: Twitter
-  #   link: https://twitter.com/cloudcannon/
-  #   social_icon: Twitter
-  #   new_window: true
-  # - name: YouTube
-  #   link: https://youtube.com/bigbitbus/
-  #   social_icon: YouTube
-  #   new_window: true
-  # - name: RSS
-  #   link: /feed.xml
-  #   social_icon: RSS
-  #   new_window: false
+  - name: LinkedIn
+    link: https://www.linkedin.com/company/bigbitbus/
+    new_window: true
+    social_icon: LinkedIn
+  - name: Twitter
+    link: https://twitter.com/bigbitbus?lang=en
+    social_icon: Twitter
+    new_window: true
+  - name: YouTube
+    link: https://www.youtube.com/channel/UCItH_M9j0qm0jlhb55KmRsQ
+    social_icon: YouTube
+    new_window: true
+  - name: RSS
+    link: /feed.xml
+    social_icon: RSS
+    new_window: true

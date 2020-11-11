@@ -1,17 +1,26 @@
+- name: Home
+  link: /
+  new_window: false
+  highlight: false
+  icon: fa fa-home
+
 - name: Console
   link: https://b3console.bigbitbus.com 
   new_window: true
   highlight: false
+  icon: fa fa-cloud
 
 - name: Tour
   link: /frontend-documentation
   new_window: true
   highlight: true
+  icon: fa fa-university
 
 - name: API
   link: https://b3api.bigbitbus.com 
   new_window: true
-  highlight: false 
+  highlight: false
+  icon: fa fa-gears
 
 # - name:  Catalog
 #   link: https://b3api.bigbitbus.com/data/prices/ 
@@ -21,15 +30,19 @@
   link: /pricing/
   new_window: false
   highlight: false
+  icon: fa fa-usd
+
 - name: Blog
   link: /blog/
   new_window: false
   highlight: false
+  icon: fa fa-archive
 
 - name: Contact
   link: /contact/
   new_window: false
   highlight: false
+  icon: fa fa-phone
 # - name: Login
 #   link: /
 #   new_window: true

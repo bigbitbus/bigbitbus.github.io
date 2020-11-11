@@ -21,6 +21,15 @@ Ready to do some quick back-of-envelope architecture and price planning? Or, cur
 
 Lets start with signing into the B3Console.
 
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
+
 ## Account Creation and Login
 <a name="login"></a>
 
@@ -31,6 +40,15 @@ You can create an account by logging into BigBitBus using your Google, Gsuite or
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/cbIXPA15Ewg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
+
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
 
 
 ## Stacks
@@ -44,6 +62,15 @@ Its important to note that stacks model your infrastructure, they don't actually
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/2axhGSL3LSE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
 Clicking on "detail" lets you view the tiers and cost of your stack and its tier components. 
+
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
 
 ## Creating New Stacks
 <a name="create_new_stack"></a>
@@ -67,6 +94,15 @@ Each tier in the stack is comprised of a service type. There may be multiple ins
 
 
 
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
+
 ## Stack Matching
 <a name="stack_matching"></a>
 
@@ -78,6 +114,15 @@ You can find analogous service types for each tier of your stack using the "matc
 ![Match your stack: find alternatives](stack_matching-small.gif)
 
 
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
+
 ## Stack Optimization
 <a name="stack_optimization"></a>
 
@@ -86,10 +131,28 @@ BigBitBus has collected performance data 1000s of virtual machine service types 
 ![Optimize your stack: improve performance and/or lower costs](stack_optimization-small.gif)
 
 
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
+
 ## Service Comparison
 
 You can also compare individual services with each other. After finding the service you wish to compare click on `Compare` and select a second service. A tabular comparison of the two services is presented.
 
+
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
 
 ## Service List
 <a name="service_list"></a>
@@ -101,6 +164,15 @@ There are also advanced options for creating your own "provider" and add service
 ![The list of cloud provider service types that can be used to compose tiers and stacks](servicelistfilter-small.gif)
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/tjDhJ-Z36Rw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
 
 ## Price List
 <a name="price_list"></a>
@@ -114,11 +186,29 @@ There are also advanced options for creating your own price for any service type
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/XylrAw524mA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
 
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
+
 ## Sharing
 
 Most page views inside the B3Console can be shared publicly via URL links and through LinkedIn and Twitter. A "Share" button is provided at the top right to quickly create publicly accessible "shares" of the view. Shares can be viewed by anyone with the URL and expire after a user-specified period. Note that shares are HTML files with sponsor links to support the service.
 
 ![Creating a Stack Share](share-stack.gif)
+
+&nbsp;
+&nbsp;
+
+___
+
+
+&nbsp;
+&nbsp;
 
 ## Learn more
 

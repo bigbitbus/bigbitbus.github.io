@@ -9,7 +9,7 @@
     new_window: true
   - name: Blog
     link: /blog/
-    icon: fa fa-archive
+    icon: fa fa-pencil
   - name: Docs
     link: /frontend-documentation
     new_window: true

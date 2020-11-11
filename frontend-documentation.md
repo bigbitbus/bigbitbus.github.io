@@ -7,7 +7,7 @@ Welcome to the BigBitBus Console. The BigBitBus Console (B3Console) is a tool to
 
 Ready to do some quick back-of-envelope architecture and price planning? Or, curious to know if "the-other-cloud-provider" is more cost effective for your use-case? Follow along this walk-through and start making data-driven informed choices around public cloud providers.
 
-**Application Walkthrough Steps**
+**Application Walkthrough**
 - [Account Creation and Login](#account-creation-and-login)
 - [Stacks](#stacks)
 - [Creating New Stacks](#creating-new-stacks)

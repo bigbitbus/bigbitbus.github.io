@@ -36,7 +36,7 @@
   link: /blog/
   new_window: false
   highlight: false
-  icon: fa fa-archive
+  icon: fa fa-pencil
 
 - name: Contact
   link: /contact/

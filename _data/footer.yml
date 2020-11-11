@@ -16,7 +16,7 @@
     icon: fa fa-file-pdf-o
 
 - links:
-  - name: About
+  - name: About Us
     link: https://www.youtube.com/watch?v=hMyT-QMIWxU
     new_window: true
     icon: fa fa-info-circle

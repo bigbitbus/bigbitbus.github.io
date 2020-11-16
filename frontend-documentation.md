@@ -6,6 +6,7 @@ heading: BigBitBus Console Quickstart
 Welcome to the BigBitBus Console. The BigBitBus Console (B3Console) is a tool to compare different cloud provider services' attributes, their performance and costs. We currently offer service and on-demand/reserved pricing information for Amazon AWS, Azure Google Cloud GCP and Alibaba Cloud, primarily for compute services (VMs); we are rapidly expanding our catalog to include other cloud providers and service types.
 
 Ready to do some quick back-of-envelope architecture and price planning? Or, curious to know if "the-other-cloud-provider" is more cost effective for your use-case? Follow along this walk-through and start making data-driven informed choices around public cloud providers.
+<a name="application_walkthrough"></a>
 
 **Application Walkthrough**
 - [Account Creation and Login](#account-creation-and-login)
@@ -35,6 +36,8 @@ ___
 
 You can create an account by logging into BigBitBus using your Google, Gsuite or Github account. For this example lets use Google. Click on the "Google Login" button. The same credentials can be used to log into the console subsequently. 
 
+[Back to Walkthrough](#application_walkthrough)
+
 ![Using Google Social Login to log into the BigBitBus Console](google-login-small.gif)
 
 
@@ -56,6 +59,8 @@ ___
 After you log in you will see a list of your "stacks". A few demo stacks are automatically created for new users. Stacks describe an IT application's infrastructure and may employ one or more kinds of cloud services. Identical services (e.g. a specific VM type in a given cloud provider location) are grouped as different "tiers". There can be one or more identical service types comprising a "tier". For example, the `bigbitbus_sample_bigdata_apache_spark_cluster` example has a master node tier with 3 `aws-c5.2xlarge` VMs and an application server tier comprised of 32 `aws-m5.large` VMs.
 
 Its important to note that stacks model your infrastructure, they don't actually stand up any real infrastructure in a cloud provider! So you are free to create, update and experiment with any combination of services.
+
+[Back to Walkthrough](#application_walkthrough)
 
 ![The list of your stacks; clicking on detail lets you view the tiers and cost of your stack and its tier components.](stacks-small.gif)
 
@@ -87,6 +92,8 @@ Each tier in the stack is comprised of a service type. There may be multiple ins
 | memsizemin  | 2  | In Gigabytes (GB), the minimum memory size you want your VMs to have, this value is optional  |
 | memsizemax  | 8  | In Gigabytes (GB), the maximum memory size you want your VMs to have, this value is optional  |
 
+[Back to Walkthrough](#application_walkthrough)
+
 ![Optimize your stack: improve performance and/or lower costs](create_new_stack-small.gif)
 
 
@@ -108,6 +115,8 @@ ___
 
 You can find analogous service types for each tier of your stack using the "matching-attributes" functionality. In the case of virtual machines we match the number of vCPUs and the memory (RAM). We are currently working on including non-VM service types and they will be matched based on other relavent attributes.
 
+[Back to Walkthrough](#application_walkthrough)
+
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/Q_wFmeeCD5E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  -->
@@ -128,6 +137,8 @@ ___
 
 BigBitBus has collected performance data 1000s of virtual machine service types (ranging from 1-32 vCPUs) across different cloud providers. You can Use stack optimiztion by telling the system how much CPU and memory is currently utilized by the tier's services; the system then finds appropriate VMs in the target cloud provider that will satisfy your application stack's demand. If BigBitBus does not have performance data then it will fall back to match analogous service types based on attributes like the number of vCPUs or memory size.
 
+[Back to Walkthrough](#application_walkthrough)
+
 ![Optimize your stack: improve performance and/or lower costs](stack_optimization-small.gif)
 
 
@@ -143,6 +154,8 @@ ___
 ## Service Comparison
 
 You can also compare individual services with each other. After finding the service you wish to compare click on `Compare` and select a second service. A tabular comparison of the two services is presented.
+
+[Back to Walkthrough](#application_walkthrough)
 
 
 &nbsp;
@@ -160,6 +173,8 @@ ___
 BigBitBus maintains over 10,000 service types being offered by different cloud providers (AWS, Azure, GCP, Digital Ocean and Alibaba cloud currently) across dozens of their data centers. This list is available by clicking on "Services" on the top menu. Filters are provided to narrow down your searches.
 
 There are also advanced options for creating your own "provider" and add service types to it.
+
+[Back to Walkthrough](#application_walkthrough)
 
 ![The list of cloud provider service types that can be used to compose tiers and stacks](servicelistfilter-small.gif)
 
@@ -181,6 +196,8 @@ Each service type can have multiple prices based on whether you are buying on-de
 
 There are also advanced options for creating your own price for any service type. In addition, you can specify blanket discounts for a certain provider. For example, if you have negotiated a flat 10% discount on your AWS bill then this can be applied across your stacks.
 
+[Back to Walkthrough](#application_walkthrough)
+
 ![The list of cloud provider service types that can be used to compose tiers and stacks](pricelistfilter-small.gif)
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/XylrAw524mA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -199,6 +216,8 @@ ___
 
 Most page views inside the B3Console can be shared publicly via URL links and through LinkedIn and Twitter. A "Share" button is provided at the top right to quickly create publicly accessible "shares" of the view. Shares can be viewed by anyone with the URL and expire after a user-specified period. Note that shares are HTML files with sponsor links to support the service.
 
+[Back to Walkthrough](#application_walkthrough)
+
 ![Creating a Stack Share](share-stack.gif)
 
 &nbsp;
@@ -213,4 +232,6 @@ ___
 ## Learn more
 
 Visit our [website](https://www.bigbitbus.com/) to learn more.
+
+[Back to Walkthrough](#application_walkthrough)
 

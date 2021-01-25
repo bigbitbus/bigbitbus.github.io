@@ -3,21 +3,36 @@ title: BigBitBus Console Quickstart
 heading: BigBitBus Console Quickstart
 ---
 
-Welcome to the BigBitBus Console. The BigBitBus Console (B3Console) is a tool to compare different cloud provider services' attributes, their performance and costs. We currently offer service and on-demand/reserved pricing information for Amazon AWS, Azure Google Cloud GCP and Alibaba Cloud, primarily for compute services (VMs); we are rapidly expanding our catalog to include other cloud providers and service types.
+Welcome to the B3Console quickstart.
 
-Ready to do some quick back-of-envelope architecture and price planning? Or, curious to know if "the-other-cloud-provider" is more cost effective for your use-case? Follow along this walk-through and start making data-driven informed choices around public cloud providers.
+
+B3Console is a tool to compare different cloud provider service features, performance and costs. We currently collect and curate information for Amazon AWS, Azure Google Cloud GCP, Linode and Alibaba Cloud, primarily for compute services (VMs); we are rapidly expanding our catalog to include other cloud providers and non-compute service types. Additionally, users of B3Console can add service and cost information about their private in-house cloud into B3Console and then compare their private cloud to public clouds.
+
+B3Console does not seek to "connect" into your cloud provider with your cloud credentials and analyze your current deployment. Think of this tool as a "what-if" tool. 
+
+What if ...
+
+  * ... we moved from cloud provider X to cloud provider Y?
+  * ... we chose reserved pricing instead of on-demand pricing?
+  * ... we moved an application from our private cloud into a public cloud, or visa-versa?
+  * ... we ran our VMs hotter at 50% peak CPU utilization instead of 30% and saved money with smaller t-shirt sizes?
+
+You can also compare services across different cloud providers, share your findings, download data into a spreadsheet and be better prepared with objective data when making fundamental decisions around your public, private or hybrid cloud strategy.
+
+Ready to get started? You can watch this 11 minute video that gives you a tour of the functionality. Then you can scroll below to review specific features.
+
+<iframe width="1024" height="576" src="https://www.youtube.com/embed/mvuOcGUiedE?vq=hd720" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 **Application Walkthrough**
 - [Account Creation and Login](#account-creation-and-login)
 - [Stacks](#stacks)
 - [Creating New Stacks](#creating-new-stacks)
-- [Stack Matching](#stack-matching)
+- [Stack Matching using AI](#stack-matching-using-ai)
 - [Stack Optimization](#stack-optimization)
 - [Service Comparison](#service-comparison)
 - [Service List](#service-list)
-- [Price List](#price-list)
-- [Sharing List](#sharing)
-- [Learn More](#learn-more)
+- [Sharing](#sharing)
+- [Learn more](#learn-more)
 
 Lets start with signing into the B3Console.
 
@@ -103,7 +118,7 @@ ___
 &nbsp;
 &nbsp;
 
-## Stack Matching
+## Stack Matching using AI
 <a name="stack_matching"></a>
 
 You can find analogous service types for each tier of your stack using the "matching-attributes" functionality. In the case of virtual machines we match the number of vCPUs and the memory (RAM). We are currently working on including non-VM service types and they will be matched based on other relavent attributes.
@@ -174,7 +189,7 @@ ___
 &nbsp;
 &nbsp;
 
-## Price List
+<!-- ## Price List
 <a name="price_list"></a>
 
 Each service type can have multiple prices based on whether you are buying on-demand or reserving the service for a long period. You can look at the current prices stored by BigBitBus. Filters are provided to narrow down your searches.
@@ -193,7 +208,7 @@ ___
 
 
 &nbsp;
-&nbsp;
+&nbsp; -->
 
 ## Sharing
 

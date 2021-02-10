@@ -13,13 +13,14 @@ The global public cloud service market is a multi-billion dollar industry that c
 We provide a way for users to replicate their infrastructure footprint metadata in our application in form of application stacks, which are composed of individual cloud services. Once the user has defined the stack, s/he can do many "what-if" analyses when it comes to migrating the stack to another provider. For example, consider a simple e-commerce application. The application consists of 3 tiers: an application tier, a database tier, and an NGINX tier. The infrastructure runs on Microsoft’s Azure platform and costs about $33,000 a year. The details of such an application stack can be found in the figure below:
 
 <p align="center">
-<img src="/assets/post13/Cost.png"/>
+<img src="/assets/post13/Stack.png"/>
 </p>
 
  The stack feature allows our users to directly translate their infrastructure to an alternate provider using AI-based algorithms. This translation provides an estimate of infrastructure costs on the alternate provider. It also provides multiple options on the alternate provider for a single service, which enables users to clearly understand tradeoffs between different providers. Continuing with our e-commerce application above we use the BigBitBus console to translate the application stack to a different provider, say Amazon Web Services (AWS). According to our AI matching algorithm the same e-commerce application  can be run on AWS for approximately $14,000 , which is  less than half the price of Azure with the same virtual machines and data centre location.
 
+
 <p align="center">
-<img src="/assets/post13/Stack.png"/>
+<img src="/assets/post13/Cost.png"/>
 </p>
 
 ## Data

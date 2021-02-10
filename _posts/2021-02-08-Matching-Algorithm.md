@@ -4,8 +4,6 @@ title:      Matching Algorithm
 published:  true
 ---
 
-## Aim 
-
 The global public cloud service market is a multi-billion dollar industry, which continues to grow at a rapid pace as businesses continue to invest in these technologies. Given that these cloud services become the primary drivers of an organization’s IT infrastructure - the decision to choose a cloud service provider becomes a complex one. Add to this a lack of transparent and unbiased data sources on cloud service performance and pricing a wrong decision can have a lasting negative impact. This is the void we aim to fill at BigBitBus Inc. and help businesses manage the technology risk  
 
 The main idea behind developing a matching service is to create a service that allows users to compare cloud infrastructure costs and features across the many providers in the market today. A lack of transparency in this area makes it difficult for decision makers to pick the right service and pricing for their organisational needs.
@@ -15,13 +13,13 @@ A cursory search for any price comparison on Google mostly yields ad-hoc article
 This is the space our product aims to fill. We provide a way for users to replicate their infrastructure in our application in form of application stacks, which are composed of individual cloud services. For example, consider a simple e-commerce application. The application consists of 3 tiers: an application tier, a database tier, and an NGINX tier. The infrastructure runs on Microsoft’s Azure platform and costs about $33,000 a year. The details of the application stack can be found in the figure below:
 
 <p align="center">
-<img src="../assets/post13/Cost.png"/>
+<img src="/assets/post13/Cost.png"/>
 </p>
 
  The stack feature allows our users to directly translate their infrastructure to an alternate provider. This translation provides an estimate of infrastructure costs on the alternate provider. It also provides multiple options for a single service, which enables users to clearly understand tradeoffs between different providers. Continuing with our e-commerce application above we use the BigBitBus console to translate the application stack to a different provider say Amazon Web Services (AWS). According to our matching algorithm the same e-commerce application  can be run on AWS for  approximately $14,000 , which is  less than half  the price of Azure with the same virtual machines and data centre location.
 
 <p align="center">
-<img src="../assets/post13/Stack.png"/>
+<img src="/assets/post13/Stack.png"/>
 </p>
 
 ## Data
@@ -46,7 +44,7 @@ To create this dataset we use a simple Python script to retrieve the data from o
 The raw data was then enhanced with new features as well as adjusted to ensure that the training results were not biased due to data. These measures include scaling the features so that large features like memory do not dominate as well as encoding categorical variables as numbers. The entire data pipeline is illustrated in the figure below.
 
 <p align="center">
-<img src="../assets/post13/Data Pipeline.jpg"/>
+<img src="/assets/post13/Data Pipeline.jpg"/>
 </p>
 
 To further enhance the data we run a clustering algorithm to club similar services. This is helpful as within a service type there are machines that are optimized for certain uses e.g. CPU Optimized machines have a higher core count relative to memory. Ultimately it  improves the quality of matches returned by the algorithm.  
@@ -63,7 +61,7 @@ The idea is straightforward- compute <a href="https://en.wikipedia.org/wiki/Eucl
 As stated above the matching algorithm does not naively return the closest service by distance as calculated using the k-NN algorithm. The algorithm uses a simple scoring system that balances between the quality(closeness) of the match and its cost. The score uses an input parameter alpha that ranges from 0 to 1. This can be adjusted to choose for closeness or cost of the match. The process by which the scoring formula rebalances matches is shown in the figure below. The matched services are plotted on the basis of the k-NN distance and the cost and the blue ellipses indicate the returned matches.
 
 <p align="center">
-<img src="../assets/post13/Plot.jpg"/>
+<img src="/assets/post13/Plot.jpg"/>
 </p>
 
 ## Future Development

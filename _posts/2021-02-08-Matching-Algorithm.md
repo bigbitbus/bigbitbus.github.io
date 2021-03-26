@@ -4,6 +4,7 @@ title:      Matching Algorithm
 published:  true
 ---
 
+Given that these cloud services become the primary drivers of an organization’s IT infrastructure - the decision to choose a cloud service provider becomes a complex one. [B3Console](https://b3console.bigbitbus.com/login) can be your inbiased data-driven decision helper in this space!
 ## Aim 
 
 The global public cloud service market is a multi-billion dollar industry, which continues to grow at a rapid pace as businesses continue to invest in these technologies. Given that these cloud services become the primary drivers of an organization’s IT infrastructure - the decision to choose a cloud service provider becomes a complex one. Add to this a lack of transparent and unbiased data sources on cloud service performance and pricing a wrong decision can have a lasting negative impact. This is the void we aim to fill at BigBitBus Inc. and help businesses manage the technology risk  

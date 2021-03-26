@@ -20,7 +20,7 @@ This section will present an overview of pricing of relational database services
 We find that the cheapest provider across all vCPU sizes is Microsoft Azure, whereas Google and AWS have similar pricing up until 32 vCPU cores. Beyond this point AWS becomes more expensive. 
 
 <p align="center">
-<img src="../assets/post15/rates.png"/>
+<img src="/assets/post15/rates.png"/>
 </p>
 
 
@@ -29,29 +29,31 @@ We find that the cheapest provider across all vCPU sizes is Microsoft Azure, whe
 
 
 <p align="center">
-<img src="../assets/post15/machine_types.png"/>
+<img src="/assets/post15/machine_types.png"/>
 </p>
 
 There are also differences in prices across regions, and these too can be significant. The chart below shows the prices of a small single core machine (db.m1.small) for AWS running the PostgreSQL. As can be seen prices can vary widely between regions. As shown below the rate can more than double depending on the region, where the service is deployed. 
 
 <p align="center">
-<img src="../assets/post15/regions.png"/>
+<img src="/assets/post15/regions.png"/>
 </p>
 
-<p align="center">
-<img src="../assets/post15/screenshot_aze.png"/>
-</p>
 
-Comparing Providers
+
+## Comparing Providers
 
 There are 10s of thousands of managed database machine type skus across providers. BigBitBus has collected detailed pricing and sizing data for all these options so you can make data-driven decisions about how to choose your cloud provider and right-size your database workloads.
+
+<p align="center">
+<img src="/assets/post15/screenshot_aze.png"/>
+</p>
 
 The B3Console allows you to gain insights into your IT infrastructure costs using our comparison tool. It allows you to take the relational database service on one provider and translates it to corresponding services on another. For example, we translate the m4 machine type from AWS to GCP and Azure using the B3Console’s matching feature. The m4 machine types are the general purpose machine types from Amazon that can be used for most workloads. In particular we match the db.m4.2xlarge machine with 8 vCPU cores and 32 GB of memory running the MySQL database engine. In case of GCP, the B3Console returns the db-n1-standard-8 service with 8 cores of vCPU and 30 GB of memory. Outside of the small difference in memory the machines are the same, but the difference in price is significant. The AWS service costs $1,022 a month compared to $789 of the GCP service. This is approximately 23% in savings and can save about $2,800 a year. The results from the GCP translation can be seen in the figure below:
 
 
 
 <p align="center">
-<img src="../assets/post15/screenshot.png"/>
+<img src="/assets/post15/screenshot.png"/>
 </p>
 
 

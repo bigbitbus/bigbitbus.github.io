@@ -25,9 +25,9 @@ Since its unlikely that the silicon was designed with this characteristic we del
 
 ## Pricing
 
-You can use our free [B3Console](https://b3console.bigbitbus.com/login) tool to compare VMs across different cloud providers, but we have collected the on-demand pricing per month (720 hours) for E2 and N2 VMs in Google's us-central1 datacenter (as of June 10th, 2021):
+You can use our free [B3Console](https://b3console.bigbitbus.com/login) tool to compare VMs across different cloud providers, we have collected the on-demand pricing per month (720 hours) for E2 and N2 VMs in Google's us-central1 datacenter (as of June 10th, 2021) in this table :
 
-| Product | vCPU pm| 1 GB RAM pm |
+| Product | 1 vCPU | 1 GB RAM |
 | -------- | ------------- | ----- |
 | E2 | $15.70 | $2.10 |
 | N2 |  $22.76 | $3.05 | 

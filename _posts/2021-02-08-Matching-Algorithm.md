@@ -7,19 +7,20 @@ published:  true
 In this article we explain some of the internals of our ML-based cloud provider comparison solution implemented in our [B3Console](https://b3console.bigbitbus.com) product.
 
 
-The global public cloud service market is a multi-billion dollar industry that continues to grow at a rapid pace as businesses invest in modern cloud IT. As public cloud services become the primary drivers of an organization’s IT infrastructure, sound data-driven decisions to choose a cloud service provider or migrate from one provider to another become vital. This is the speace we aim to fill with our B3Console product. We enable users to make unbiased data-driven comparisons between cloud provider services.
+The global public cloud service market is a multi-billion dollar industry that continues to grow at a rapid pace as businesses invest in modern cloud IT. As public cloud services become the primary drivers of an organization’s IT infrastructure, sound data-driven decisions to choose a cloud service provider or migrate from one provider to another become vital. This is the space we aim to fill with our B3Console product. We enable users to make unbiased data-driven comparisons between cloud provider services.
 
 
 We provide a way for users to replicate their infrastructure footprint metadata in our application in form of application stacks, which are composed of individual cloud services. Once the user has defined the stack, s/he can do many "what-if" analyses when it comes to migrating the stack to another provider. For example, consider a simple e-commerce application. The application consists of 3 tiers: an application tier, a database tier, and an NGINX tier. The infrastructure runs on Microsoft’s Azure platform and costs about $33,000 a year. The details of such an application stack can be found in the figure below:
 
 <p align="center">
-<img src="/assets/post13/Cost.png"/>
+<img src="/assets/post13/Stack.png"/>
 </p>
 
- The stack feature allows our users to directly translate their infrastructure to an alternate provider using AI-based algorithms. This translation provides an estimate of infrastructure costs on the alternate provider. It also provides multiple options on the alternate provider for a single service, which enables users to clearly understand tradeoffs between different providers. Continuing with our e-commerce application above we use the BigBitBus console to translate the application stack to a different provider, say Amazon Web Services (AWS). According to our AI matching algorithm the same e-commerce application  can be run on AWS for  pproximately $14,000 , which is  less than half the price of Azure with the same virtual machines and data centre location.
+ The stack feature allows our users to directly translate their infrastructure to an alternate provider using AI-based algorithms. This translation provides an estimate of infrastructure costs on the alternate provider. It also provides multiple options on the alternate provider for a single service, which enables users to clearly understand tradeoffs between different providers. Continuing with our e-commerce application above we use the BigBitBus console to translate the application stack to a different provider, say Amazon Web Services (AWS). According to our AI matching algorithm the same e-commerce application  can be run on AWS for approximately $14,000 , which is  less than half the price of Azure with the same virtual machines and data centre location.
+
 
 <p align="center">
-<img src="/assets/post13/Stack.png"/>
+<img src="/assets/post13/Cost.png"/>
 </p>
 
 ## Data
@@ -43,7 +44,7 @@ To further enhance the data we run a clustering algorithm to club similar servic
 
 ## The Machine Learning Matching Algorithm
 
-In our earliest algorithms we used to find matches for services with a rules based system that would scan the entire database for matching services and then compute a score and rank the matches based on the computed score. This was a slow process and could run in excess of 4-5 seconds for some services. Such long waits are detrimental to the user experience. Further these matches did not always return the most relevant matches.
+In our earlier algorithm we used to find matches for services with a rules based system that would scan the entire database for matching services and then compute a score and rank the matches based on the computed score. This was a slow process and could run in excess of 4-5 seconds for some services. Such long waits are detrimental to the user experience. Further these algorithms did not always return the most relevant matches.
 
 With widespread accessibility of machine learning algorithms through popular libraries like Python’s <a href="https://scikit-learn.org/">Sklearn</a>, using an ML approach was a natural choice. The matching algorithm is a simple <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm"> K-Nearest Neighbours (k-NN)</a> algorithm that finds closely related cloud services on a different provider using the relevant attributes for the kind of service being matched. This is an unconventional use of the k-NN algorithm, which is usually used in the context of regression and classification problems.
 
